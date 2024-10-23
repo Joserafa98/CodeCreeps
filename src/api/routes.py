@@ -62,3 +62,22 @@ def login_user():
     # Generar JWT Token
     access_token = create_access_token(identity=user.id)
     return jsonify({"access_token": access_token, "user_id": user.id}), 200
+
+# Obtener todos los usuarios
+@api.route('/usuarios', methods=['GET'])
+def get_all_users():
+    users = User.query.all()  # Consulta todos los usuarios en la base de datos
+    users_serialized = [user.serialize() for user in users]  # Serializa los usuarios
+    return jsonify(users_serialized), 200  # Retorna la lista de usuarios en formato JSON
+
+# Obtener un usuario por su ID
+@api.route('/usuarios/<int:user_id>', methods=['GET'])
+def get_user_by_id(user_id):
+    user = User.query.get(user_id)  # Busca un usuario por su ID
+    if not user:
+        return jsonify({"msg": "Usuario no encontrado"}), 404  # Retorna un error si no se encuentra el usuario
+    
+    return jsonify(user.serialize()), 200  # Retorna el usuario serializado
+
+if __name__ == '__main__':
+    api.run(debug=True)
