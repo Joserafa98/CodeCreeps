@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+body {
+    font-family: 'Arial', sans-serif; /* Cambiamos a una fuente más neutral para el cuerpo */
+}
+
+a {
+    color: #ff6f00; /* Naranja */
+}
+
+a:hover {
+    color: #ff8585; /* Un color más claro para el hover */
+}
+
+.auth-wrapper {
+    height: 100vh;
+    background-color: #000; /* Fondo negro */
+    background: linear-gradient(-45deg, #ff6f00, #000); /* De naranja a negro */
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative; /* Para que los elementos flotantes se posicionen en relación a este contenedor */
+    overflow: hidden; /* Evitar que los elementos flotantes salgan del contenedor */
+}
+
+.btn {
+    border-radius: 25px; /* Bordes más redondeados para un estilo más moderno */
+    padding: 12px 25px; /* Aumentar el espaciado interno del botón */
+    font-size: 1.2rem; /* Tamaño de fuente mayor para el botón */
+    font-weight: bold; /* Hacer el texto más grueso */
+    transition: all 0.3s ease; /* Transición suave para hover */
+}
+
+.btn:hover {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 0.3s;
+    outline: none;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(-45deg, #ff6f00, #000); /* Botón con el mismo gradient */
+    color: #fff; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    transition: all 0.5s ease-out;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(-45deg, #000, #ff6f00); /* Invertir colores en hover */
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: #ff6f00; /* Color de fondo del botón activo */
+    border-color: #000; /* Color del borde activo */
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    box-shadow: none;
+}
+
+.form-wrapper {
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco más opaco para mejorar la legibilidad */
+    padding: 50px; /* Aumentar el espaciado interno para un formulario más "gordo" */
+    border-radius: 20px; /* Bordes más redondeados */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* Sombra para resaltar el formulario */
+    max-width: 450px; /* Aumentar el ancho máximo del formulario */
+    margin: auto; /* Centrar el formulario horizontalmente */
+    position: relative; /* Para que los elementos hijos se posicionen relativos a este contenedor */
+}
+
+.form-group {
+    margin-bottom: 25px; /* Aumentar el espacio entre los grupos de formulario */
+}
+
+.form-group label {
+    color: #ff6f00; /* Color naranja para las etiquetas */
+    font-weight: bold; /* Texto más grueso */
+    margin-bottom: 8px; /* Espacio debajo de la etiqueta */
+    display: block; /* Aseguramos que la etiqueta ocupe su línea */
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco más claro para inputs */
+    color: #000; /* Color de texto negro */
+    border: 1px solid #ff6f00; /* Borde naranja */
+    border-radius: 10px; /* Bordes redondeados en inputs */
+    padding: 12px; /* Aumentar el espaciado interno en inputs */
+    font-size: 1rem; /* Tamaño de fuente del input */
+}
+
+.form-control:focus {
+    border-color: #ff6f00; /* Bordes naranjas en el input */
+    box-shadow: 0 0 0 0.2rem rgba(255, 111, 0, 0.25); /* Sombra con el mismo color */
+    outline: none; /* Sin contorno al hacer foco */
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%; /* Ampliamos un poco el ancho */
+    height: 100%; /* Mantener la altura completa del contenedor */
+    overflow: hidden; /* No mostrar elementos fuera del contenedor */
+    z-index: 0; /* Asegúrate de que sea bajo para permitir clics */
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 50px; /* Tamaño de la calavera */
+    height: 50px; /* Tamaño de la calavera */
+    background-image: url('https://images.vexels.com/content/143890/preview/skull-halloween-mask-1f7360.png'); /* URL de la imagen de la calavera */
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: float 10s linear infinite; /* Duración de la animación de las calaveras */
+    bottom: -150px;  
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    animation-delay: 0s;
+}
+ 
+.circles li:nth-child(2) {
+    left: 10%;
+    animation-delay: 1s; /* Modificado para una aparición más rápida */
+    animation-duration: 12s;
+}
+ 
+.circles li:nth-child(3) {
+    left: 70%;
+    animation-delay: 2s; /* Modificado para una aparición más rápida */
+}
+ 
+.circles li:nth-child(4) {
+    left: 40%;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+ 
+.circles li:nth-child(5) {
+    left: 65%;
+    animation-delay: 0s;
+}
+ 
+.circles li:nth-child(6) {
+    left: 75%;
+    animation-delay: 3s;
+}
+ 
+.circles li:nth-child(7) {
+    left: 30%; /* Cambiar posición para que salga un poco más a la derecha */
+    animation-delay: 5s; /* Modificado para una aparición más rápida */
+}
+ 
+.circles li:nth-child(8) {
+    left: 50%;
+    animation-delay: 8s; /* Modificado para una aparición más rápida */
+    animation-duration: 45s;
+}
+ 
+.circles li:nth-child(9) {
+    left: 20%;
+    animation-delay: 2s; /* Modificado para una aparición más rápida */
+    animation-duration: 35s;
+}
+ 
+.circles li:nth-child(10) {
+    left: 85%;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.form-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.alert {
+    position: relative;
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    animation: fadeIn 0.5s; /* Efecto de entrada */
+}
+
+.alert-success {
+    background-color: rgba(76, 175, 80, 0.9); /* Color de fondo para éxito */
+    color: white; /* Color del texto */
+}
+
+.alert-danger {
+    background-color: rgba(244, 67, 54, 0.9); /* Color de fondo para error */
+    color: white; /* Color del texto */
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Posición del icono de cerrar */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el icono */
+    color: white; /* Color del icono */
+    font-size: 1.5rem; /* Tamaño del icono */
+    transition: color 0.3s; /* Transición suave para el color */
+}
+
+.close-icon:hover {
+    color: rgba(255, 0, 0, 0.7); /* Cambiar color en hover para hacer más visible */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Desplazamiento hacia arriba al entrar */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Posición original */
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards; /* Efecto de salida */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* Comienza completamente visible */
+    }
+    to {
+        opacity: 0; /* Termina invisible */
+        transform: translateY(-10px); /* Desplazamiento hacia arriba al salir */
+    }
+}
+
+.welcome-title {
+    font-family: 'Creepster', cursive; /* Cambiamos a la fuente de Halloween */
+    font-size: 3rem; /* Aumentamos el tamaño del texto */
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.7); /* Agregamos sombra */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.welcome-text {
+    font-family: 'Arial', sans-serif; /* Fuente más neutral para el texto */
+    font-size: 1.25rem; /* Tamaño de texto más grande */
+    line-height: 1.5; /* Mejorar el espaciado entre líneas */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-translúcido */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
+}

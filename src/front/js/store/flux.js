@@ -1,54 +1,89 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
+    return {
+        store: {
+            users: [],  // Almacenar información del usuario registrado
+            currentUser: null, // Almacenar el usuario actualmente logueado
+            error: null, // Para almacenar errores
+        },
+        actions: {
+            // Función para registrar un usuario
+            signupUser: async (userData) => {
+                try {
+                    const response = await fetch(`${process.env.BACKEND_URL}/api/signup`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(userData),
+                    });
+
+                    console.log("Response:", response); // Muestra la respuesta completa
+
+                    if (response.ok) {
+                        const newUser = await response.json(); // Extrae la respuesta JSON
+                        console.log("Nuevo usuario creado:", newUser); // Muestra los datos del nuevo usuario
+
+                        // Actualiza el estado con el nuevo usuario
+                        setStore({ users: [...getStore().users, newUser] });
+
+                        return { success: true, newUser }; // Retorna verdadero si la operación es exitosa
+                    } else {
+                        // Intenta extraer información del error en formato JSON
+                        let errorData;
+                        try {
+                            errorData = await response.json();
+                        } catch (jsonError) {
+                            console.error("Error al parsear la respuesta del error:", jsonError);
+                            errorData = { msg: "Error desconocido" }; // Mensaje de error genérico
+                        }
+
+                        console.error("Error en la respuesta del servidor:", errorData); // Muestra el error del servidor
+                        return { success: false, msg: errorData.msg || "Error en el registro" }; // Retorna falso y el mensaje de error
+                    }
+                } catch (error) {
+                    console.error("Error durante el registro del usuario:", error); // Muestra el error de la solicitud
+                    return { success: false, msg: "Error de red" }; // Retorna falso y un mensaje de error
+                }
+            },
+
+            // Función para iniciar sesión
+            loginUser: async (userData) => {
+				try {
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/login`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(userData),
+					});
+			
+					if (!resp.ok) {
+						const errorData = await resp.json(); // Para obtener información adicional sobre el error
+						console.error("Error durante el inicio de sesión:", errorData); // Agregado para depuración
+						throw new Error(errorData.message || 'Error en el inicio de sesión');
+					}
+			
+					const data = await resp.json();
+					setStore({ currentUser: data.user, error: null }); // Guardamos el usuario logueado en el estado
+					return { success: true, user: data.user }; // Devuelve un objeto con success y user
+				} catch (error) {
+					console.error("Error durante el inicio de sesión:", error);
+					setStore({ error: error.message }); // Guardamos el error en el estado
+					return { success: false, msg: error.message }; // Retorna un objeto de error
 				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
 			},
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+            // Función para cerrar sesión
+            logoutUser: async () => {
+                try {
+                    setStore({ currentUser: null, error: null }); // Limpiar el estado del usuario
+                } catch (error) {
+                    console.error("Error durante el cierre de sesión:", error);
+                    setStore({ error: error.message }); // Guardamos el error en el estado
+                }
+            },
+        }
+    };
 };
 
 export default getState;
