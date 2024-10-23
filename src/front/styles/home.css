@@ -1,27 +1,32 @@
-/* GOOGLE FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&display=swap");
+
 /* VARIABLES CSS */
 :root {
   --header-height: 3.5rem;
+  
   /* Colors */
-  --hue: 14;
+  --hue: 28; /* Manteniendo el tono anaranjado */
   --first-color: hsl(var(--hue), 91%, 54%);
   --first-color-alt: hsl(var(--hue), 91%, 50%);
   --title-color: hsl(var(--hue), 4%, 100%);
   --text-color: hsl(var(--hue), 4%, 85%);
   --text-color-light: hsl(var(--hue), 4%, 55%);
-  /*Red gradient*/
+  
+  /* Anaranjado Halloween más oscuro */
   --body-color: linear-gradient(
     90deg,
-    hsl(338, 67%, 11%) 0%,
-    hsl(281, 63%, 10%) 100%
+    hsl(28, 67%, 14%) 0%,   /* Naranja más oscuro */
+    hsl(20, 60%, 10%) 100%  /* Tonos marrón oscuro */
   );
+  
   --container-color: linear-gradient(
     136deg,
-    hsl(338, 67%, 11%) 0%,
-    hsl(281, 63%, 10%) 100%
+    hsl(28, 67%, 14%) 0%,   /* Contenedor con tonos oscuros */
+    hsl(20, 60%, 10%) 100%
   );
-  --sub: #ff5b79;
+  
+  --sub: #ff551a; /* Naranja más profundo y brillante para detalles */
+  
   /* Font and typography */
   --body-font: "Poppins", sans-serif;
   --biggest-font-size: 2rem;
@@ -31,10 +36,12 @@
   --normal-font-size: 0.938rem;
   --small-font-size: 0.813rem;
   --smaller-font-size: 0.75rem;
+
   /* Font weight */
   --font-medium: 500;
   --font-semi-bold: 600;
   --font-black: 900;
+
   /* Margenes Bottom */
   --mb-0-25: 0.25rem;
   --mb-0-5: 0.5rem;
@@ -43,10 +50,12 @@
   --mb-1-5: 1.5rem;
   --mb-2: 2rem;
   --mb-2-5: 2.5rem;
+
   /* z index */
   --z-tooltip: 10;
   --z-fixed: 100;
 }
+
 /* Responsive typography */
 @media screen and (min-width: 992px) {
   :root {
@@ -59,6 +68,8 @@
     --smaller-font-size: 0.813rem;
   }
 }
+
+
 /* BASE */
 * {
   box-sizing: border-box;
@@ -339,7 +350,8 @@ button {
   padding: 0.75rem 1.5rem;
 }
 .button--ghost:hover {
-  background: none;
+  background: white;
+  color: #ff5b79;
 }
 .button--link {
   color: var(--title-color);
