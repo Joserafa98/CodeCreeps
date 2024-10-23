@@ -177,20 +177,52 @@ useEffect(() => {
 				</div>
 			  </section>
 			  {/* TRICK */}
-			  <section className="section trick" id="trick">
+			  <section className="section trick">
 				<div className="trick__container container grid">
-				  <img src="https://assets.codepen.io/7773162/trick-img.png" alt="" className="trick__img" />
-				  <div className="trick__data">
-					<h2 className="section__title">The best treat <br /> for this year </h2>
-					<p className="trick__description">
-					  This year’s treat is the scariest one ever, the one you’ve never seen. Each treat comes with its own trick.
-					</p>
-					<a href="#" className="button--link button--flex">
-					  Know More <i className='bx bx-right-arrow-alt button__icon'></i>
-					</a>
-				  </div>
+					<div className="backg">
+						<div className="ghost">
+							<div className="hat">
+								<div className="hat1">
+									<div className="s1"></div>
+								</div>
+							</div>
+							<div className="face">
+								<div className="eye-l">
+									<div className="dot1"></div>
+									<div className="dot2"></div>
+								</div>
+								<div className="eye-r">
+									<div className="dot1"></div>
+									<div className="dot2"></div>
+								</div>
+								<div className="blsh-l"></div>
+								<div className="blsh-r"></div>
+								<div className="mouth"></div>
+							</div>
+							<div className="hand-l"></div>
+							<div className="hand-r"></div>
+							<div className="pumpkin">
+								<div className="handle"></div>
+								<div className="p1"></div>
+								<div className="p2"></div>
+								<div className="p3"></div>
+								<div className="p4"></div>
+								<div className="e-l"></div>
+								<div className="e-r"></div>
+								<div className="nose"></div>
+								<div className="m">
+									<div className="t1"></div>
+									<div className="t2"></div>
+									<div className="t3"></div>
+									<div className="t4"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			  </section>
+			</section>
+
+
 			</main>
 		  </>
 		);
