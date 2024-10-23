@@ -120,11 +120,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                         const user = await response.json();
                         return { success: true, user }; // Devuelve el usuario obtenido
                     } else {
-                        console.error("Error al obtener el usuario");
-                        return { success: false, msg: "Usuario no encontrado" };
+                        console.error("Error al obtener el usuario por ID");
+                        return { success: false, msg: "Error al obtener el usuario por ID" };
                     }
                 } catch (error) {
-                    console.error("Error en la solicitud GET de usuario:", error);
+                    console.error("Error en la solicitud GET de usuario por ID:", error);
                     return { success: false, msg: "Error de red" };
                 }
             },
