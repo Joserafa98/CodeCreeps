@@ -82,6 +82,52 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({ error: error.message }); // Guardamos el error en el estado
                 }
             },
+            // Función para obtener todos los usuarios
+            getAllUsers: async () => {
+                try {
+                    const response = await fetch(`${process.env.BACKEND_URL}/api/usuarios`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const users = await response.json();
+                        setStore({ users: users }); // Actualiza el estado con la lista de usuarios
+                        return { success: true, users }; // Devuelve los usuarios obtenidos
+                    } else {
+                        console.error("Error al obtener los usuarios");
+                        return { success: false, msg: "Error al obtener los usuarios" };
+                    }
+                } catch (error) {
+                    console.error("Error en la solicitud GET de usuarios:", error);
+                    return { success: false, msg: "Error de red" };
+                }
+            },
+
+            // Función para obtener un usuario por su ID
+            getUser: async (userId) => {
+                try {
+                    const response = await fetch(`${process.env.BACKEND_URL}/api/usuarios/${userId}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const user = await response.json();
+                        return { success: true, user }; // Devuelve el usuario obtenido
+                    } else {
+                        console.error("Error al obtener el usuario por ID");
+                        return { success: false, msg: "Error al obtener el usuario por ID" };
+                    }
+                } catch (error) {
+                    console.error("Error en la solicitud GET de usuario por ID:", error);
+                    return { success: false, msg: "Error de red" };
+                }
+            },
         }
     };
 };
