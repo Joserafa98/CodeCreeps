@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";;
 import Swiper from 'swiper';
+import { Footer } from "../component/footer";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -218,7 +219,7 @@ useEffect(() => {
 				</div>
 			</section>
 
-
+			<Footer></Footer>
 			</main>
 		  </>
 		);

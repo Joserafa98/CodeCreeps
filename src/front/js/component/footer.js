@@ -18,7 +18,7 @@ export const Footer = () => (
 			</div>
 
 			{/* Redes sociales centradas */}
-			<div className="row mt-2 mb-7 justify-content-center">
+			<div className="row mb-7 justify-content-center">
 				<div className="col-auto">
 					<ul className="nav mx-n4">
 						<li className="nav-item">
