@@ -66,18 +66,18 @@ def login_user():
 # Obtener todos los usuarios
 @api.route('/usuarios', methods=['GET'])
 def get_all_users():
-    users = User.query.all()  # Consulta todos los usuarios en la base de datos
-    users_serialized = [user.serialize() for user in users]  # Serializa los usuarios
-    return jsonify(users_serialized), 200  # Retorna la lista de usuarios en formato JSON
+    users = User.query.all()  
+    users_serialized = [user.serialize() for user in users]  
+    return jsonify(users_serialized), 200  
 
 # Obtener un usuario por su ID
 @api.route('/usuarios/<int:user_id>', methods=['GET'])
 def get_user_by_id(user_id):
-    user = User.query.get(user_id)  # Busca un usuario por su ID
+    user = User.query.get(user_id)  
     if not user:
-        return jsonify({"msg": "Usuario no encontrado"}), 404  # Retorna un error si no se encuentra el usuario
+        return jsonify({"msg": "Usuario no encontrado"}), 404  
     
-    return jsonify(user.serialize()), 200  # Retorna el usuario serializado
+    return jsonify(user.serialize()), 200  
 
 if __name__ == '__main__':
     api.run(debug=True)
