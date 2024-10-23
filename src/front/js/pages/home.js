@@ -1,21 +1,30 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import Swiper from 'swiper';
 import { Footer } from "../component/footer";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
-	
-	
-useEffect(() => {
-  const swiper = new Swiper('.home-swiper', {
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-  });
-}, []);
+    const { store, actions } = useContext(Context);
+
+    useEffect(() => {
+        // Inicializa Swiper al montar el componente
+        const swiper = new window.Swiper('.home-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        return () => {
+            swiper.destroy(); // Limpiar el swiper al desmontar el componente
+        };
+    }, []);
 
 	return (
 		  <>
@@ -26,15 +35,16 @@ useEffect(() => {
 					<div className="nav__menu" id="nav-menu">
 					<ul className="nav__list">
 						<li className="nav__item">
-						<a href="#home" className="nav__link active-link">Home</a>
+						<a href="#home" className="nav__link active-link">Inicio</a>
 						</li>
 						<li className="nav__item">
-						<a href="#trick" className="nav__link">Trick</a>
+						<a href="#trick" className="nav__link">Trucos</a>
 						</li>
 						<li className="nav__item">
-						<a href="#treat" className="nav__link">Treat</a>
+						<a href="#treat" className="nav__link">Tratos</a>
 						</li>
 						<a href="#" className="button button--ghost">ÚNETE AHORA</a>
+						<a href="#" className="button button--ghost">INICIA SESIÓN</a>
 					</ul>
 					<div className="nav__close" id="nav-close">
 						<i className='bx bx-x'></i>
@@ -72,9 +82,7 @@ useEffect(() => {
 								¡Prepárate para aprender y jugar en esta noche de brujas llena de sorpresas <strong>espeluznantes!</strong>
 							</p>
 							<div className="home__buttons">
-								<a href="#" className="book--now">
-								<img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-								</a>
+								<a href="#" className="button button--ghost">CODEA AHORA</a>
 							</div>
 							</div>
 						</div>
@@ -98,9 +106,7 @@ useEffect(() => {
 							No guardes los secretos de CodeCreeps solo para ti. Invita a tus amigos a adentrarse en nuestros desafíos de programación infernales y a compartir la diversión macabra.
 							</p>
 							<div className="home__buttons">
-								<a href="#" className="book--now">
-								<img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-								</a>
+								<a href="#" className="button button--ghost">INICIA SESIÓN Y COMPARTE</a>
 							</div>
 							</div>
 						</div>
@@ -113,7 +119,7 @@ useEffect(() => {
 							<img src="https://assets.codepen.io/7773162/home1-img.png" alt="" className="home__img" />
 							<div className="home__indicator"></div>
 							<div className="home__details-img">
-								<h4 className="home__details-title">El top”</h4>
+								<h4 className="home__details-title">El top</h4>
 								<span className="home__details-subtitle">Mundial</span>
 							</div>
 							</div>
@@ -124,9 +130,7 @@ useEffect(() => {
 							¿Tienes lo que se necesita para sobrevivir a los retos de programación más escalofriantes? En CodeCreeps, los desafíos no son para los débiles. Acepta el llamado de la oscuridad, demuestra tu destreza y escala en nuestro temido Ranking <strong>MONSTRUOSO</strong>.
 							</p>
 							<div className="home__buttons">
-								<a href="#" className="book--now">
-								<img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-								</a>
+								<a href="#" className="button button--ghost">RANKEA AHORA</a>
 								
 							</div>
 							</div>
