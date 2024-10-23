@@ -9,12 +9,10 @@ export const Home = () => {
 	
 useEffect(() => {
   const swiper = new Swiper('.home-swiper', {
-    // Opciones de Swiper
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
-    // Otras configuraciones
   });
 }, []);
 
@@ -88,22 +86,19 @@ useEffect(() => {
 							<img src="https://assets.codepen.io/7773162/home2-img.png" alt="" className="home__img" />
 							<div className="home__indicator"></div>
 							<div className="home__details-img">
-								<h4 className="home__details-title">Adino & Grahami</h4>
-								<span className="home__details-subtitle">No words can describe them</span>
+								<h4 className="home__details-title">tu y tu amig@</h4>
+								<span className="home__details-subtitle">Con el #mood para aprender</span>
 							</div>
 							</div>
 							<div className="home__data">
-							<h3 className="home__subtitle">Comparte con tus amigos y</h3>
-							<h1 className="home__title">JUNTOS <br /> DEL TOP <br /> MUNDIAL</h1>
+							<h3 className="home__subtitle">No te enfrentes solo a estos desafíos… ¡Invita a tus amigos a unirse al horror!</h3>
+							<h1 className="home__title">COMPARTE<br /> CODECREEPS <br /> CON TODOS</h1>
 							<p className="home__description">
-								Los participantes mas #top saldrán en nuestra lista de los mejores
+							No guardes los secretos de CodeCreeps solo para ti. Invita a tus amigos a adentrarse en nuestros desafíos de programación infernales y a compartir la diversión macabra.
 							</p>
 							<div className="home__buttons">
 								<a href="#" className="book--now">
 								<img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-								</a>
-								<a href="#" className="button--link button--flex">
-								Track Record <i className='bx bx-right-arrow-alt button__icon'></i>
 								</a>
 							</div>
 							</div>
@@ -117,24 +112,21 @@ useEffect(() => {
 							<img src="https://assets.codepen.io/7773162/home1-img.png" alt="" className="home__img" />
 							<div className="home__indicator"></div>
 							<div className="home__details-img">
-								<h4 className="home__details-title">The Labu “Reiza”</h4>
-								<span className="home__details-subtitle">The Living Pumpkin</span>
+								<h4 className="home__details-title">El top”</h4>
+								<span className="home__details-subtitle">Mundial</span>
 							</div>
 							</div>
 							<div className="home__data">
-							<h3 className="pumpkin__subtitle">#3 Top Scariest Ghost 2020</h3>
-							<h1 className="home__title">UOOOO <br /> TRICK OR <br /> TREAT!!</h1>
+							<h3 className="pumpkin__subtitle">Se parte del Top Mundial</h3>
+							<h1 className="home__title">CONQUISTA <br /> EL RANKING <br /> MONSTRUOSO!!</h1>
 							<p className="home__description">
-								Hi I’m Reiza, people call me “The Labu” currently I’m trying to learn something new, 
-								building my own bike with parts only made from Malaysia.
+							¿Tienes lo que se necesita para sobrevivir a los retos de programación más escalofriantes? En CodeCreeps, los desafíos no son para los débiles. Acepta el llamado de la oscuridad, demuestra tu destreza y escala en nuestro temido Ranking <strong>MONSTRUOSO</strong>.
 							</p>
 							<div className="home__buttons">
 								<a href="#" className="book--now">
-								<img src="https://assets.codepen.io/7773162/svgviewer-output+%282%29_2.svg" alt="" />
+								<img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
 								</a>
-								<a href="#" className="button--link button--flex">
-								Track Record <i className='bx bx-right-arrow-alt button__icon'></i>
-								</a>
+								
 							</div>
 							</div>
 						</div>

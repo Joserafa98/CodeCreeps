@@ -156,6 +156,12 @@ button {
   align-items: center;
   column-gap: 0.5rem;
   font-weight: var(--font-medium);
+  text-transform: uppercase;
+  font-weight: var(--font-black);
+  transition: 0.4s;
+}
+.nav__logo:hover {
+  color: var(--text-color);
 }
 .nav__logo-img {
   width: 1.25rem;
@@ -351,7 +357,7 @@ button {
 }
 .button--ghost:hover {
   background: white;
-  color: #ff5b79;
+  color: #ff551a;
 }
 .button--link {
   color: var(--title-color);
