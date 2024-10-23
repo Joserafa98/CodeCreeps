@@ -141,25 +141,6 @@ body {
   text-align: center;
 }
 
-/* SWIPER */
-
-.swiper {
-  width: 70%;
-  height: 100%;
-  background: transparent;
-  border-radius: 30px;
-  cursor: grab;
-  margin-bottom: 80px;
-}
-
-.swiper-slide {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  place-items: center;
-  gap: 30px;
-  color: #fff;
-  padding: 40px 40px;
-}
 
 .parallax-bg {
   position: absolute;
@@ -179,36 +160,6 @@ body {
   );
 }
 
-.swiper-slide .title {
-  position: relative;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 1.3rem;
-}
-
-.swiper-slide .title:before,
-.swiper-slide .title:after {
-  content: attr(data-content);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.swiper-slide .title:before {
-  color: #00ffff;
-  z-index: -1;
-  animation: glitchy 0.8s ease 0.8s infinite;
-}
-
-.swiper-slide .title:after {
-  color: #ff00ff;
-  z-index: -2;
-  animation: glitchy 0.8s ease infinite reverse;
-}
-
 @keyframes glitchy {
   0% {
     transform: translate(-2px, 2px);
@@ -225,24 +176,6 @@ body {
   100% {
     transform: translate(-2px, 2px);
   }
-}
-
-.swiper-slide .text > p {
-  font-size: 1rem;
-  max-width: 400px;
-  line-height: 1.4;
-}
-
-.swiper-slide .image > img {
-  max-width: 100%;
-  width: 350px;
-  aspect-ratio: 1/1;
-  border-radius: 20px;
-}
-
-.swiper-slide .image > img:hover {
-  mix-blend-mode: hard-light;
-  animation: animate 0.2s linear 2;
 }
 
 @keyframes animate {
@@ -375,39 +308,14 @@ body {
     padding: 70px 90px 70px;
   }
 
-  .swiper {
-    width: 90%;
-    height: 60%;
-  }
-
-  .swiper-slide .title {
-    font-size: 2rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .swiper-slide .text > p {
-    font-size: 1rem;
-  }
-}
+  
 
 @media (max-width: 990px) {
   .blog {
     padding: 20px 90px 70px;
   }
 
-  .swiper {
-    width: 90%;
-    height: 60%;
-  }
-
-  .swiper-slide .title {
-    font-size: 1.5rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .swiper-slide .text > p {
-    font-size: 0.9rem;
-  }
+  
 
   .blog h3 {
     font-size: 2rem;
@@ -430,9 +338,7 @@ body {
     font-size: 3rem;
   }
 
-  .swiper {
-    width: 100%;
-  }
+  
 
   .btn {
     min-width: 90px;
@@ -444,11 +350,7 @@ body {
 }
 
 @media (max-width: 670px) {
-  .swiper-slide {
-    grid-template-columns: repeat(1, 1fr);
-    padding: 30px 30px;
-  }
-
+  
   .blog h3 {
     font-size: 1.5rem;
   }
@@ -471,4 +373,5 @@ body {
   .btn span {
     font-size: 0.6rem;
   }
+}
 }
