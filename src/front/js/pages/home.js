@@ -172,7 +172,7 @@ export const Home = () => {
 					Atrévete a ingresar al siniestro laboratorio del conocimiento en CodeCreeps, donde cada recurso es una delicia tenebrosa que enriquecerá tu viaje de aprendizaje. 
 					</p>
 					<div className="home__buttons">
-						<a href="#" className="button button--ghost">APRENDE AHORA</a>
+						<Link to="/Treats" className="button button--ghost">APRENDE AHORA</Link>
 					</div>
 				  </div>
 				  <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />
