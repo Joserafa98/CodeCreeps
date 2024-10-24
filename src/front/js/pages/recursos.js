@@ -1,26 +1,38 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/recursos.css";
+import { Footer } from "../component/footer";
 
 export const Treats = () => {
-    const [activeTab, setActiveTab] = useState('videos');
+    const [activeTab, setActiveTab] = useState(null); // Estado para la card activa
 
     const resources = {
         videos: [
             { title: "JavaScript Basics", url: "https://www.youtube.com/watch?v=W6NZfCO5SIk" },
             { title: "React Tutorial", url: "https://www.youtube.com/watch?v=Ke90Tje7VS0" },
             { title: "CSS Flexbox & Grid", url: "https://www.youtube.com/watch?v=tXIhdp5R7sc" },
+            { title: "Python for beginners", url: "https://www.youtube.com/watch?v=kqtD5dpn9C8" },
+            { title: "Aprende Angular", url: "https://www.youtube.com/watch?v=f7unUpshmpA&t=1s" }
         ],
         documents: [
-            { title: "MDN Web Docs", url: "https://developer.mozilla.org/en-US/" },
+            { title: "Flask Documentation", url: "https://flask.palletsprojects.com/en/stable/" },
             { title: "React Documentation", url: "https://reactjs.org/docs/getting-started.html" },
             { title: "TypeScript Handbook", url: "https://www.typescriptlang.org/docs/" },
+            { title: "Tailwind CSS", url: "https://tailwindcss.com/docs/installation" },
+            { title: "Angular Documentation", url: "https://v17.angular.io/docs" },
+
         ],
         websites: [
-            { title: "FreeCodeCamp", url: "https://www.freecodecamp.org/" },
-            { title: "Codecademy", url: "https://www.codecademy.com/" },
-            { title: "GitHub", url: "https://github.com/" },
+            { title: "Practica Comandos", url: "https://cmdchallenge.com/" },
+            { title: "UIverse", url: "https://uiverse.io/" },
+            { title: "CodePen", url: "https://codepen.io/" },
+            { title: "V0 AI for Devs", url: "https://v0.dev/" },
+            { title: "Practica SQL", url: "https://sqlbolt.com/" }
         ],
+    };
+
+    const handleTabClick = (tab) => {
+        setActiveTab(activeTab === tab ? null : tab); // Alternar entre mostrar/ocultar
     };
 
     return (
@@ -71,7 +83,7 @@ export const Treats = () => {
                                         Atrévete a explorar los rincones más oscuros de nuestro catálogo de recursos. Estos son conjuros prohibidos que potenciarán tus habilidades de programación. Solo los más valientes osarán usarlos para desatar su verdadero poder. ¿Te atreves a enfrentarte a los conocimientos más tenebrosos y dominar el código que acecha <strong>en las sombras?</strong>
                                     </p>
                                     <div className="home__buttons">
-                                        <a href="#" className="button button--ghost">CODEA AHORA</a>
+                                        <a href="#treat" className="button button--ghost">CODEA AHORA</a>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +97,10 @@ export const Treats = () => {
                 <h1 className="text-center">Elige tu camino</h1>
                 <div className="cards__container">
                     {/* Tarjeta de Videos */}
-                    <div className="card">
+                    <div
+                        className={`card ${activeTab === 'videos' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('videos')}
+                    >
                         <i className="fa-brands fa-youtube fa-2x"></i>
                         <div className="card__content">
                             <p className="card__title">Videos</p>
@@ -96,7 +111,10 @@ export const Treats = () => {
                     </div>
 
                     {/* Tarjeta de Documentación */}
-                    <div className="card">
+                    <div
+                        className={`card ${activeTab === 'documents' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('documents')}
+                    >
                         <i className="fa-solid fa-file-alt fa-2x"></i>
                         <div className="card__content">
                             <p className="card__title">Documentación</p>
@@ -107,7 +125,10 @@ export const Treats = () => {
                     </div>
 
                     {/* Tarjeta de Webs Recomendadas */}
-                    <div className="card">
+                    <div
+                        className={`card ${activeTab === 'websites' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('websites')}
+                    >
                         <i className="fa-solid fa-globe fa-2x"></i>
                         <div className="card__content">
                             <p className="card__title">Webs Recomendadas</p>
@@ -117,46 +138,27 @@ export const Treats = () => {
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <div className="custom-card-container">
-                <div className="custom-card">
-                    <div className="custom-card-header">
-                        <h3 className="mb-0">Spooky Coding Resources</h3>
-                        <p>Haunting materials for junior programmers</p>
-                    </div>
-                    <div className="custom-card-body">
-                        <ul className="nav nav-tabs mb-4">
-                            {Object.keys(resources).map((category) => (
-                                <li className="nav-item" key={category}>
-                                    <button
-                                        className={`nav-link ${activeTab === category ? 'active' : ''}`}
-                                        onClick={() => setActiveTab(category)}
-                                    >
-                                        {category.charAt(0).toUpperCase() + category.slice(1)}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="tab-content">
-                            {Object.entries(resources).map(([category, items]) => (
-                                <div key={category} className={`tab-pane fade ${activeTab === category ? 'show active' : ''}`}>
-                                    <ul className="list-group">
-                                        {items.map((item, index) => (
-                                            <li key={index} className="list-group-item">
-                                                <Link to={item.url} target="_blank" rel="noopener noreferrer" className="d-flex justify-content-between align-items-center resource-item">
-                                                    <span>{item.title}</span>
-                                                    <span className="badge bg-primary">Open</span>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                {/* Mostrar las listas de recursos debajo de las cards */}
+                <div className="resources__container">
+                    {activeTab && (
+                        <div className="resource-list">
+                            {resources[activeTab].map((item, index) => (
+                                <a 
+                                    key={index} 
+                                    href={item.url} 
+                                    className="resource-item" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    {item.title}
+                                </a>
                             ))}
                         </div>
-                    </div>
+                    )}
                 </div>
-            </div>
+            </section>
+            <Footer></Footer>
         </>
     );
 };

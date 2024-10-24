@@ -45,8 +45,8 @@ export const Home = () => {
 						<li className="nav__item">
 							<Link to="/Treats" className="nav__link">Tratos</Link>
 						</li>
-						<a href="#" className="button button--ghost">ÚNETE AHORA</a>
-						<a href="#" className="button button--ghost">INICIA SESIÓN</a>
+						<Link to="/signup" className="button button--ghost">ÚNETE AHORA</Link>
+						<Link to="/login" className="button button--ghost">INICIA SESIÓN</Link>
 					</ul>
 					<div className="nav__close" id="nav-close">
 						<i className='bx bx-x'></i>

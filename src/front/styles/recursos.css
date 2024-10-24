@@ -941,7 +941,10 @@ button {
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 .card i {
     font-size: 64px; /* Ajusta el tamaño del ícono */
     color: #fff; /* Cambia el color del ícono si es necesario */
@@ -984,56 +987,50 @@ button {
     color: #777;
     line-height: 1.4;
 }
-/* Custom Card */
-.custom-card {
-    background: linear-gradient(135deg, hsl(28, 67%, 50%) 0%, hsl(28, 67%, 35%) 100%); /* Fondo de Halloween */
-    border-radius: 1rem;
-    padding: 1.5rem;
-    transition: background 0.3s; /* Transición de fondo suave */
-  }
-  
-  .custom-card:hover {
-    background: linear-gradient(135deg, hsl(28, 67%, 70%) 0%, hsl(28, 67%, 60%) 100%); /* Cambia a un fondo más claro al hacer hover */
-  }
-  
-  /* Mini Navbar para los botones */
-  .mini-navbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    border: 1px solid var(--sub);
-    border-radius: 0.5rem;
-    overflow: hidden; /* Para evitar que los bordes se salgan */
-  }
-  
-  .mini-navbar button {
-    flex: 1;
-    padding: 0.75rem;
-    background: transparent;
-    color: var(--sub);
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-  }
-  
-  .mini-navbar button:hover {
-    background: rgba(255, 85, 26, 0.2); /* Efecto de fondo al hacer hover */
-  }
-  
-  /* Efecto de selección para los botones de la mini-navbar */
-  .mini-navbar button.active {
-    background: var(--sub);
-    color: white; /* Texto blanco cuando está activo */
-  }
-  
-  /* Efecto de zoom en los recursos al hacer hover */
-  .resource {
-    transition: transform 0.3s;
-  }
-  
-  .resource:hover {
-    transform: scale(1.05); /* Zoom al hacer hover */
-  }
-  
-  
+/* Contenedor de recursos */
+.resources__container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.resource-list {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo de los enlaces a recursos */
+.resource-item {
+  background-color: #444;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ff751a;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+}
+
+.resource-item:hover {
+  transform: scale(1.1); /* Efecto de zoom al hacer hover */
+  background-color: #ff751a; /* Cambia el fondo a un color temático de Halloween */
+  color: #fff; /* Cambia el color del texto a blanco */
+}
+
+/* Efecto de clic en las cards */
+.card:active {
+  transform: scale(0.95); /* Efecto de zoom al hacer clic */
+}
+
+
   
