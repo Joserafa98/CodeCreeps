@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext'; // Asegúrate de importar el contexto
+import "../../styles/challengelist.css"; // Asegúrate de agregar estilos personalizados
 
 // Ejercicios estáticos
 const desafios = [
@@ -80,23 +80,22 @@ export default function ChallengeList() {
   };
 
   return (
-    <Container fluid className="bg-dark text-light p-4">
-      <h2 className="text-warning mb-4">Desafíos de Halloween</h2>
-      <Row>
+    <div className="challenge-list-container">
+      <h2 className="challenge-list-title">Desafíos de Halloween</h2>
+      <div className="challenge-list-grid">
         {desafios.map((desafio) => (
-          <Col key={desafio.id} md={6} className="mb-4">
-            <Card className="bg-secondary text-light">
-              <Card.Body>
-                <Card.Title>{desafio.nombre_reto}</Card.Title>
-                <Card.Text>{desafio.descripcion}</Card.Text>
-                <Button variant="warning" onClick={() => handleComplete(desafio.id)}>
-                  Completar Reto
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
+          <div key={desafio.id} className="challenge-card">
+            <h3 className="challenge-card-title">{desafio.nombre_reto}</h3>
+            <p className="challenge-card-description">{desafio.descripcion}</p>
+            <button 
+              className="challenge-complete-button" 
+              onClick={() => handleComplete(desafio.id)}
+            >
+              Completar Reto
+            </button>
+          </div>
         ))}
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 }
