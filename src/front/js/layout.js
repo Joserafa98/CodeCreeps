@@ -7,7 +7,7 @@ import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import SignUp from "./pages/signup";
 import Login from "./pages/login";
-import MainPage from "./pages/main";
+import HalloweenCodingChallenge from "./pages/main";
 import Retos from "./pages/retos"; // Importación corregida
 import { Treats } from "./pages/recursos";
 //create your first component
@@ -26,7 +26,7 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<SignUp />} path="/signup" />
                         <Route element={<Login />} path="/login" />
-                        <Route element={<MainPage />} path="/main" />
+                        <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Retos />} path="/challenges" />
                         <Route element={<Treats />} path="/Treats" />
                         <Route element={<h1>Not found!</h1>} />

@@ -45,8 +45,8 @@ export const Home = () => {
 						<li className="nav__item">
 							<Link to="/Treats" className="nav__link">Tratos</Link>
 						</li>
-						<a href="#" className="button button--ghost">ÚNETE AHORA</a>
-						<a href="#" className="button button--ghost">INICIA SESIÓN</a>
+						<Link to="/signup" className="button button--ghost">ÚNETE AHORA</Link>
+						<Link to="/login" className="button button--ghost">INICIA SESIÓN</Link>
 					</ul>
 					<div className="nav__close" id="nav-close">
 						<i className='bx bx-x'></i>
@@ -172,7 +172,7 @@ export const Home = () => {
 					Atrévete a ingresar al siniestro laboratorio del conocimiento en CodeCreeps, donde cada recurso es una delicia tenebrosa que enriquecerá tu viaje de aprendizaje. 
 					</p>
 					<div className="home__buttons">
-						<a href="#" className="button button--ghost">APRENDE AHORA</a>
+						<Link to="/Treats" className="button button--ghost">APRENDE AHORA</Link>
 					</div>
 				  </div>
 				  <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />
