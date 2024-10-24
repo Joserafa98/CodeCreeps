@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Footer } from "../component/footer";
+import { Link } from "react-router-dom";
+
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
@@ -41,7 +43,7 @@ export const Home = () => {
 						<a href="#trick" className="nav__link">Trucos</a>
 						</li>
 						<li className="nav__item">
-						<a href="#treat" className="nav__link">Tratos</a>
+							<Link to="/Treats" className="nav__link">Tratos</Link>
 						</li>
 						<a href="#" className="button button--ghost">ÚNETE AHORA</a>
 						<a href="#" className="button button--ghost">INICIA SESIÓN</a>
@@ -169,59 +171,13 @@ export const Home = () => {
 					<p className="about__description">
 					Atrévete a ingresar al siniestro laboratorio del conocimiento en CodeCreeps, donde cada recurso es una delicia tenebrosa que enriquecerá tu viaje de aprendizaje. 
 					</p>
-					<a href="#" className="book--now">
-					  <img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-					</a>
+					<div className="home__buttons">
+						<a href="#" className="button button--ghost">APRENDE AHORA</a>
+					</div>
 				  </div>
 				  <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />
 				</div>
 			  </section>
-
-			  {/* TRICK */}
-			  <section className="section trick">
-				<div className="trick__container container grid">
-					<div className="backg">
-						<div className="ghost">
-							<div className="hat">
-								<div className="hat1">
-									<div className="s1"></div>
-								</div>
-							</div>
-							<div className="face">
-								<div className="eye-l">
-									<div className="dot1"></div>
-									<div className="dot2"></div>
-								</div>
-								<div className="eye-r">
-									<div className="dot1"></div>
-									<div className="dot2"></div>
-								</div>
-								<div className="blsh-l"></div>
-								<div className="blsh-r"></div>
-								<div className="mouth"></div>
-							</div>
-							<div className="hand-l"></div>
-							<div className="hand-r"></div>
-							<div className="pumpkin">
-								<div className="handle"></div>
-								<div className="p1"></div>
-								<div className="p2"></div>
-								<div className="p3"></div>
-								<div className="p4"></div>
-								<div className="e-l"></div>
-								<div className="e-r"></div>
-								<div className="nose"></div>
-								<div className="m">
-									<div className="t1"></div>
-									<div className="t2"></div>
-									<div className="t3"></div>
-									<div className="t4"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
 
 			<Footer></Footer>
 			</main>
