@@ -20,8 +20,8 @@ const injectContext = (PassedComponent) => {
         );
 
         useEffect(() => {
-            // Aquí puedes hacer solicitudes AJAX o inicializar datos
-            // Ejemplo: Puedes hacer una solicitud de usuarios o configuración inicial
+            // Inicializa el estado al cargar el componente
+            state.actions.initializeStore();
         }, []);
 
         return (

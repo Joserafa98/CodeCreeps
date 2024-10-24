@@ -17,6 +17,27 @@ api = Blueprint('api', __name__)
 # Allow CORS requests to this API
 CORS(api)
 
+@api.route('/api/retos', methods=['GET'])
+def obtener_retros():
+    retos = Reto.query.all()
+    return jsonify([reto.serialize() for reto in retos])
+
+@api.route('/api/clasificaciones', methods=['POST'])
+def crear_clasificacion():
+    data = request.json
+    nueva_clasificacion = Clasificacion(
+        user_id=data['user_id'],
+        reto_id=data['reto_id'],
+        estado=data['estado']
+    )
+    db.session.add(nueva_clasificacion)
+    db.session.commit()
+    return jsonify(nueva_clasificacion.serialize()), 201
+
+@api.route('/api/clasificaciones/<int:user_id>', methods=['GET'])
+def obtener_clasificaciones(user_id):
+    clasificaciones = Clasificacion.query.filter_by(user_id=user_id).all()
+    return jsonify([clasificacion.serialize() for clasificacion in clasificaciones])
 
 # Registro de usuario
 @api.route('/signup', methods=['POST'])

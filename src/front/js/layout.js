@@ -7,16 +7,14 @@ import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import SignUp from "./pages/signup";
 import Login from "./pages/login";
-import MainPage from "./pages/main";
-import Retos from "./pages/retos"; // Importación corregida
+import Retos from "./pages/retos";
+import HalloweenCodingChallenge from "./component/CourseCard";
 
-//create your first component
 const Layout = () => {
-    //the basename is used when your project is published in a subdirectory and not in the root of the domain
-    // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    // Verificar la URL del backend
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
 
     return (
         <div>
@@ -26,9 +24,9 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<SignUp />} path="/signup" />
                         <Route element={<Login />} path="/login" />
-                        <Route element={<MainPage />} path="/main" />
                         <Route element={<Retos />} path="/challenges" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
+                        <Route path="*" element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
             </BrowserRouter>

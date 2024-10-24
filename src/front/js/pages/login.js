@@ -19,7 +19,7 @@ const Login = () => {
         if (response && response.success) {
             setAlert({ show: true, message: '¡Bienvenido a CodeCreeps! Has logrado abrir el portal.', type: 'success' });
             setTimeout(() => {
-                navigate("/main"); // Redirige a la página principal después de 2 segundos
+                navigate("/"); // Redirige a la página principal después de 2 segundos
             }, 2000);
         } else {
             setAlert({ show: true, message: '¡Ups! Algo salió mal. Verifica tus credenciales antes de que los fantasmas te atrapen.', type: 'danger' });
