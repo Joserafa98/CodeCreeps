@@ -8,7 +8,7 @@ import App from '../component/CourseCard';
 import '../../styles/retos.css';
 import '../../styles/coursecard.css';
 import ChallengeList from '../component/ChallengesList'; // Asegúrate de que la ruta sea correcta
-
+import Navbar from '../component/navbar';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,7 +62,9 @@ const Retos = () => { // Cambia 'retos' a 'Retos'
   }, []);
 
   return (
+    <>
     <div>
+      <Navbar />
       <section className="parallax">
         <h2 id="title">Retos de programación</h2>
         <img
@@ -102,6 +104,7 @@ const Retos = () => { // Cambia 'retos' a 'Retos'
         <ChallengeList />
         </section>
     </div>
+    </>
   );
 };
 
