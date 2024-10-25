@@ -4,7 +4,11 @@ import Swiper from 'swiper';
 import 'swiper/swiper-bundle.css';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import App from '../component/CourseCard';
 import '../../styles/retos.css';
+import '../../styles/coursecard.css';
+import ChallengeList from '../component/ChallengesList'; // Asegúrate de que la ruta sea correcta
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,37 +99,8 @@ const Retos = () => { // Cambia 'retos' a 'Retos'
 
       <section className="blog">
         <h3>Activities</h3>
-
-        {/* Swiper */}
-        <div style={{ '--swiper-pagination-color': '#fff' }} className="swiper">
-          <div className="parallax-bg" data-swiper-parallax="-23%"></div>
-          <div className="swiper-wrapper">
-            {activities.map((activity, index) => (
-              <div className="swiper-slide" key={index}>
-                <div className="content">
-                  <div className="title" data-content={activity.title} data-swiper-parallax="-500">
-                    {activity.title}
-                  </div>
-                  <div className="text" data-swiper-parallax="-300" data-swiper-parallax-opacity="0">
-                    <p>{activity.description}</p>
-                  </div>
-                </div>
-                <div className="image" data-swiper-parallax="-200">
-                  <img src={activity.image} alt={activity.title} />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="swiper-pagination"></div>
-        </div>
-
-        <p>
-          Join us for a scary night of Halloween! Ravenwood Manor, a historic and scary mansion, will open its doors for an unforgettable night of thrills and chills.
-        </p>
-        <button className="btn">
-          <span>buy ticket</span>
-        </button>
-      </section>
+        <ChallengeList />
+        </section>
     </div>
   );
 };

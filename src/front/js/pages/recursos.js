@@ -42,16 +42,17 @@ export const Treats = () => {
                 <div className="nav__menu" id="nav-menu">
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <a href="#home" className="nav__link active-link">Inicio</a>
+                            <a href="/" className="nav__link">Inicio</a>
                         </li>
                         <li className="nav__item">
-                            <a href="#trick" className="nav__link">Trucos</a>
+                            <a href="/challenges" className="nav__link">Trucos</a>
                         </li>
                         <li className="nav__item">
-                            <Link to="/Treats" className="nav__link">Tratos</Link>
+                            <Link to="/Treats" className="nav__link active-link">Tratos</Link>
                         </li>
-                        <a href="#" className="button button--ghost">ÚNETE AHORA</a>
-                        <a href="#" className="button button--ghost">INICIA SESIÓN</a>
+                        <Link to="/aboutUs" className="button button--ghost">Sobre nosotros</Link>
+                        <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
+                        <a href="/login" className="button button--ghost">INICIA SESIÓN</a>
                     </ul>
                     <div className="nav__close" id="nav-close">
                         <i className='bx bx-x'></i>
