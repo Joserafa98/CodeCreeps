@@ -9,7 +9,6 @@ import SignUp from "./pages/signup";
 import Login from "./pages/login";
 import Retos from "./pages/retos"; // Importación corregida
 import { AboutUs } from "./pages/aboutUs";
-import Retos from "./pages/retos"; // Mantener solo una importación de Retos
 import HalloweenCodingChallenge from "./component/CourseCard";
 import { Treats } from "./pages/recursos";
 
