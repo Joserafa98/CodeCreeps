@@ -9,6 +9,7 @@ import SignUp from "./pages/signup";
 import Login from "./pages/login";
 import MainPage from "./pages/main";
 import Retos from "./pages/retos"; // Importación corregida
+import { AboutUs } from "./pages/aboutUs";
 
 //create your first component
 const Layout = () => {
@@ -28,6 +29,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<MainPage />} path="/main" />
                         <Route element={<Retos />} path="/challenges" />
+                        <Route element={<AboutUs />} path="/aboutUs" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

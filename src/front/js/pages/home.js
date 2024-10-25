@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Footer } from "../component/footer";
+import { Link } from "react-router-dom";
+
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
@@ -37,6 +39,7 @@ export const Home = () => {
 						<li className="nav__item">
 						<a href="#home" className="nav__link active-link">Inicio</a>
 						</li>
+						<Link to="/aboutUs" className="button button--ghost">Sobre nosotros</Link>
 						<li className="nav__item">
 						<a href="#trick" className="nav__link">Trucos</a>
 						</li>
