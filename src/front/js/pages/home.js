@@ -1,14 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import Swiper from 'swiper';
 import { Footer } from "../component/footer";
+import { Link } from "react-router-dom";
+
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
-    
+
     useEffect(() => {
-        const swiper = new Swiper('.home-swiper', {
+        // Inicializa Swiper al montar el componente
+        const swiper = new window.Swiper('.home-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 10,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -26,17 +30,17 @@ export const Home = () => {
             {/* HEADER */}
             <header className="header" id="header">
                 <nav className="nav container">
-                    <a href="#" className="nav__logo">CodeCreeps</a>
+                    <a href="/" className="nav__logo">CodeCreeps</a>
                     <div className="nav__menu" id="nav-menu">
                         <ul className="nav__list">
                             <li className="nav__item">
-                                <a href="#home" className="nav__link active-link">Home</a>
+                                <a href="/" className="nav__link active-link">Inicio</a>
                             </li>
                             <li className="nav__item">
-                                <a href="#trick" className="nav__link">Trick</a>
+                                <a href="/challenges" className="nav__link">Trucos</a>
                             </li>
                             <li className="nav__item">
-                                <a href="#treat" className="nav__link">Treat</a>
+                                <a href="/Treats" className="nav__link">Tratos</a>
                             </li>
                             {/* Botón de Logout, solo se muestra si el usuario está autenticado */}
                             {store.currentUser && (
@@ -44,7 +48,7 @@ export const Home = () => {
                                     <button onClick={handleLogout} className="button button--ghost">Logout</button>
                                 </li>
                             )}
-                            <a href="#" className="button button--ghost">ÚNETE AHORA</a>
+                            <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
                         </ul>
                         <div className="nav__close" id="nav-close">
                             <i className='bx bx-x'></i>

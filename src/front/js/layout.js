@@ -7,9 +7,11 @@ import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import SignUp from "./pages/signup";
 import Login from "./pages/login";
-import Retos from "./pages/retos";
+import Retos from "./pages/retos"; // Mantener solo una importación de Retos
 import HalloweenCodingChallenge from "./component/CourseCard";
+import { Treats } from "./pages/recursos";
 
+//create your first component
 const Layout = () => {
     const basename = process.env.BASENAME || "";
 
@@ -26,7 +28,8 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Retos />} path="/challenges" />
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
-                        <Route path="*" element={<h1>Not found!</h1>} />
+                        <Route element={<Treats />} path="/Treats" />
+                        <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
             </BrowserRouter>
