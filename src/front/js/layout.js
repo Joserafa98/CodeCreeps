@@ -7,6 +7,8 @@ import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import SignUp from "./pages/signup";
 import Login from "./pages/login";
+import Retos from "./pages/retos"; // Importación corregida
+import { AboutUs } from "./pages/aboutUs";
 import Retos from "./pages/retos"; // Mantener solo una importación de Retos
 import HalloweenCodingChallenge from "./component/CourseCard";
 import { Treats } from "./pages/recursos";
@@ -27,6 +29,7 @@ const Layout = () => {
                         <Route element={<SignUp />} path="/signup" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Retos />} path="/challenges" />
+                        <Route element={<AboutUs />} path="/aboutUs" />
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Treats />} path="/Treats" />
                         <Route element={<h1>Not found!</h1>} />
