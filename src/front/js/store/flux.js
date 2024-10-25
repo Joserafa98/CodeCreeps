@@ -1,10 +1,10 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            users: [],  // Almacenar información del usuario registrado
-            currentUser: null, // Almacenar el usuario actualmente logueado
-            error: null, // Para almacenar errores
-            clasificaciones: [], // Almacena las clasificaciones
+            users: [],  
+            currentUser: null, 
+            error: null, 
+            clasificaciones: [], 
         },
         actions: {
             // Función para inicializar el estado

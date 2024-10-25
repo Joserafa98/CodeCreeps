@@ -50,6 +50,7 @@ export const Treats = () => {
                         <li className="nav__item">
                             <Link to="/Treats" className="nav__link active-link">Tratos</Link>
                         </li>
+                        <Link to="/aboutUs" className="button button--ghost">Sobre nosotros</Link>
                         <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
                         <a href="/login" className="button button--ghost">INICIA SESIÓN</a>
                     </ul>

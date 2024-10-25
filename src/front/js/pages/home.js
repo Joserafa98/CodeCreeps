@@ -8,7 +8,6 @@ export const Home = () => {
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        // Inicializa Swiper al montar el componente
         const swiper = new window.Swiper('.home-swiper', {
             slidesPerView: 1,
             spaceBetween: 10,
@@ -16,7 +15,15 @@ export const Home = () => {
                 el: '.swiper-pagination',
                 clickable: true,
             },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
         });
+
+        return () => {
+            swiper.destroy(); // Limpiar el swiper al desmontar el componente
+        };
     }, []);
 
     const handleLogout = () => {
@@ -28,38 +35,32 @@ export const Home = () => {
         <>
             {/* HEADER */}
             <header className="header" id="header">
-                <nav className="nav container">
-                    <a href="/" className="nav__logo">CodeCreeps</a>
-                    <div className="nav__menu" id="nav-menu">
-                        <ul className="nav__list">
-                            <li className="nav__item">
-                                <a href="/" className="nav__link active-link">Inicio</a>
-                            </li>
-                            <li className="nav__item">
-                                <Link to="/aboutUs" className="button button--ghost">Sobre nosotros</Link>
-                            </li>
-                            <li className="nav__item">
-                                <a href="#trick" className="nav__link">Trucos</a>
-                            </li>
-                            <li className="nav__item">
-                                <a href="#treat" className="nav__link">Tratos</a>
-                            </li>
-                            {store.currentUser && (
-                                <li className="nav__item">
-                                    <button onClick={handleLogout} className="button button--ghost">Logout</button>
-                                </li>
-                            )}
-                            <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
-                        </ul>
-                        <div className="nav__close" id="nav-close">
-                            <i className='bx bx-x'></i>
-                        </div>
-                        <img src="https://assets.codepen.io/7773162/nav-img.png" alt="" className="nav__img" />
+            <nav className="nav container">
+                <Link to="/" className="nav__logo">CodeCreeps</Link>
+                <div className="nav__menu" id="nav-menu">
+                    <ul className="nav__list">
+                        <li className="nav__item">
+                            <a href="/" className="nav__link">Inicio</a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="/challenges" className="nav__link">Trucos</a>
+                        </li>
+                        <li className="nav__item">
+                            <Link to="/Treats" className="nav__link active-link">Tratos</Link>
+                        </li>
+                        <Link to="/aboutUs" className="button button--ghost">Sobre nosotros</Link>
+                        <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
+                        <a href="/login" className="button button--ghost">INICIA SESIÓN</a>
+                    </ul>
+                    <div className="nav__close" id="nav-close">
+                        <i className='bx bx-x'></i>
                     </div>
-                    <div className="nav__toggle" id="nav-toggle">
-                        <i className='bx bx-grid-alt'></i>
-                    </div>
-                </nav>
+                    <img src="https://assets.codepen.io/7773162/nav-img.png" alt="" className="nav__img" />
+                </div>
+                <div className="nav__toggle" id="nav-toggle">
+                    <i className='bx bx-grid-alt'></i>
+                </div>
+            </nav>
             </header>
 
             <main className="main">
@@ -87,9 +88,7 @@ export const Home = () => {
                                             ¡Prepárate para aprender y jugar en esta noche de brujas llena de sorpresas <strong>espeluznantes!</strong>
                                         </p>
                                         <div className="home__buttons">
-                                            <a href="#" className="book--now">
-                                                <img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-                                            </a>
+                                            <a href="#" className="button button--ghost">CODEA AHORA</a>
                                         </div>
                                     </div>
                                 </div>
@@ -113,9 +112,7 @@ export const Home = () => {
                                             No guardes los secretos de CodeCreeps solo para ti. Invita a tus amigos a adentrarse en nuestros desafíos de programación infernales y a compartir la diversión macabra.
                                         </p>
                                         <div className="home__buttons">
-                                            <a href="#" className="book--now">
-                                                <img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-                                            </a>
+                                            <a href="#" className="button button--ghost">INICIA SESIÓN Y COMPARTE</a>
                                         </div>
                                     </div>
                                 </div>
@@ -139,9 +136,7 @@ export const Home = () => {
                                             ¿Tienes lo que se necesita para sobrevivir a los retos de programación más escalofriantes? En CodeCreeps, los desafíos no son para los débiles. Acepta el llamado de la oscuridad, demuestra tu destreza y escala en nuestro temido Ranking <strong>MONSTRUOSO</strong>.
                                         </p>
                                         <div className="home__buttons">
-                                            <a href="#" className="book--now">
-                                                <img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-                                            </a>
+                                            <a href="#" className="button button--ghost">RANKEA AHORA</a>
                                         </div>
                                     </div>
                                 </div>
@@ -181,9 +176,9 @@ export const Home = () => {
                             <p className="about__description">
                                 Atrévete a ingresar al siniestro laboratorio del conocimiento en CodeCreeps, donde cada recurso es una delicia tenebrosa que enriquecerá tu viaje de aprendizaje. 
                             </p>
-                            <a href="#" className="book--now">
-                                <img src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg" alt="" />
-                            </a>
+                            <div className="home__buttons">
+                                <Link to="/Treats" className="button button--ghost">APRENDE AHORA</Link>
+                            </div>
                         </div>
                         <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />
                     </div>
