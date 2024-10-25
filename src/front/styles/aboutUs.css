@@ -1,0 +1,143 @@
+/* aboutUs.css */
+
+.halloween-background {
+    background-color: #3e1d1d;
+    background-image: linear-gradient(to bottom right, #ff7518, #ba68c8, #ffeb3b);
+    color: white;
+}
+
+.text-halloween-orange {
+    color: #ff7518;
+}
+
+.text-halloween-white {
+    color: white;
+}
+
+.spooky-font {
+    font-family: 'Creepster', cursive;
+}
+
+.spooky-title {
+    font-size: 3rem;
+}
+
+.spooky-subtitle {
+    font-size: 1.5rem;
+}
+
+.spooky-icons i {
+    margin-right: 10px;
+    color: #ffeb3b;
+}
+
+.spooky-section {
+    background-color: #282c35;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center; /* Centrar el contenido */
+}
+
+.spooky-background {
+    background: #333;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 40px;
+    margin: 0 auto; /* Centrar la carta */
+    text-align: center; /* Centrar el contenido */
+    max-width: 800px; /* Limitar el ancho máximo */
+}
+
+.spooky-text {
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: 'Creepster', cursive;
+}
+
+.spooky-image {
+    border-radius: 15px;
+    border: 5px solid #ff7518;
+}
+
+.btn-halloween {
+    background-color: #ff7518;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+}
+
+.btn-halloween:hover {
+    background-color: #ba68c8;
+    color: #fff;
+}
+
+/* Nuevas clases de animación */
+.fade-in {
+    animation: fadeIn 2s ease-in forwards; /* Animación para el texto */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.spooky-font:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+/* Nueva clase para centrar contenido */
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+    height: auto; /* Ajustar altura automáticamente */
+}
+
+/* Añade esto para centrar los iconos en los botones */
+.social-buttons a {
+    display: inline-flex; /* Usar flex para centrar el contenido */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    padding: 10px 20px; /* Espaciado interno para botones */
+}
+
+/* También podrías ajustar el tamaño de los iconos */
+.social-buttons a i {
+    margin-right: 5px; /* Espacio entre el icono y el texto, si hay */
+}
+
+/* Nuevas clases para la sección de iconos y decoraciones adicionales */
+.spooky-icons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0; /* Espaciado vertical alrededor de los iconos */
+}
+
+.spooky-background {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo ligero */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 15px; /* Esquinas redondeadas */
+}
+
+/* Nuevos estilos para íconos y decoraciones adicionales */
+.halloween-decor {
+    font-size: 2rem; /* Tamaño de decoración */
+    color: #ffeb3b; /* Color de la decoración */
+    margin: 10px; /* Margen alrededor */
+}
+
+/* Ajustar las imágenes para que se mantengan en forma de bloque */
+.spooky-image {
+    border-radius: 15px;
+    border: 5px solid #ff7518;
+    max-width: 100%;
+    height: auto;
+    display: block; /* Mantener las imágenes como bloques */
+    margin: 0 auto; /* Centrar las imágenes */
+}

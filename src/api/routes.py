@@ -17,6 +17,27 @@ api = Blueprint('api', __name__)
 # Allow CORS requests to this API
 CORS(api)
 
+@api.route('/api/retos', methods=['GET'])
+def obtener_retros():
+    retos = Reto.query.all()
+    return jsonify([reto.serialize() for reto in retos])
+
+@api.route('/api/clasificaciones', methods=['POST'])
+def crear_clasificacion():
+    data = request.json
+    nueva_clasificacion = Clasificacion(
+        user_id=data['user_id'],
+        reto_id=data['reto_id'],
+        estado=data['estado']
+    )
+    db.session.add(nueva_clasificacion)
+    db.session.commit()
+    return jsonify(nueva_clasificacion.serialize()), 201
+
+@api.route('/api/clasificaciones/<int:user_id>', methods=['GET'])
+def obtener_clasificaciones(user_id):
+    clasificaciones = Clasificacion.query.filter_by(user_id=user_id).all()
+    return jsonify([clasificacion.serialize() for clasificacion in clasificaciones])
 
 # Registro de usuario
 @api.route('/signup', methods=['POST'])
@@ -62,3 +83,22 @@ def login_user():
     # Generar JWT Token
     access_token = create_access_token(identity=user.id)
     return jsonify({"access_token": access_token, "user_id": user.id}), 200
+
+# Obtener todos los usuarios
+@api.route('/usuarios', methods=['GET'])
+def get_all_users():
+    users = User.query.all()  
+    users_serialized = [user.serialize() for user in users]  
+    return jsonify(users_serialized), 200  
+
+# Obtener un usuario por su ID
+@api.route('/usuarios/<int:user_id>', methods=['GET'])
+def get_user_by_id(user_id):
+    user = User.query.get(user_id)  
+    if not user:
+        return jsonify({"msg": "Usuario no encontrado"}), 404  
+    
+    return jsonify(user.serialize()), 200  
+
+if __name__ == '__main__':
+    api.run(debug=True)
