@@ -13,11 +13,12 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       if (currentUser && currentUser.id) {
-        const user = await actions.getUserById(currentUser.id);
-        setUserData(user || {});
-        setEmail(user?.email || ""); // Inicializa el campo de email
+          const user = await actions.getUserData(currentUser.id);
+          setUserData(user || {});
+          setEmail(user?.email || ""); // Inicializa el campo de email
       }
-    };
+  };
+  
 
     const fetchClasificaciones = async () => {
       if (currentUser && currentUser.id) {
@@ -27,7 +28,7 @@ const Profile = () => {
 
     fetchUserData();
     fetchClasificaciones();
-  }, [currentUser, actions]);
+  }, []);
 
   const handleEditClick = () => {
     setIsEditing(true);

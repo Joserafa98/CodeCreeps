@@ -127,10 +127,12 @@ const getState = ({ getStore, getActions, setStore }) => {
             
                     const userData = await response.json();
                     setStore({ currentUser: userData }); // Almacena los datos en el store
+                    return userData; // Añade esta línea para retornar los datos del usuario
                 } catch (error) {
                     console.error("Error al obtener los datos del usuario:", error);
                 }
             },
+            
             
             updateUser: async (userId, updatedData) => {
                 try {
