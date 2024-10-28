@@ -27,7 +27,7 @@ const Layout = () => {
                         <Route element={<SignUp />} path="/signup" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Retos />} path="/challenges" />
-                        <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
+                        <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" /> {/* Aquí se debe mantener plural */}
                         <Route element={<Treats />} path="/Treats" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
