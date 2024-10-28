@@ -1,10 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
+import { Context } from '../store/appContext'; // Importa el contexto
 import "../../styles/recursos.css";
 import { Footer } from "../component/footer";
 import Navbar from "../component/navbar";
 
 export const Treats = () => {
+    const { store } = useContext(Context); // Usa el contexto para obtener el usuario actual
+    const { currentUser } = store; // Obtén el usuario actual del store
+    const navigate = useNavigate(); // Inicializa el hook para navegar
+
+    // Efecto que redirige si el usuario no está autenticado
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/login'); // Redirige a la página de inicio si no hay usuario
+        }
+    }, []);
+
     const [activeTab, setActiveTab] = useState(null); // Estado para la card activa
 
     const resources = {

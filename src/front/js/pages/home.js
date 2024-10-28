@@ -63,7 +63,7 @@ export const Home = () => {
                                             ¡Prepárate para aprender y jugar en esta noche de brujas llena de sorpresas <strong>espeluznantes!</strong>
                                         </p>
                                         <div className="home__buttons">
-                                            <a href="#" className="button button--ghost" id="button-font">CODEA AHORA</a>
+                                            <Link to="/Treats"className="button button--ghost" id="button-font">CODEA AHORA</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@ export const Home = () => {
                                             No guardes los secretos de CodeCreeps solo para ti. Invita a tus amigos a adentrarse en nuestros desafíos de programación infernales y a compartir la diversión macabra.
                                         </p>
                                         <div className="home__buttons">
-                                            <a href="#" className="button button--ghost" id="button-font">INICIA SESIÓN Y COMPARTE</a>
+                                            <Link to="/login" className="button button--ghost" id="button-font">INICIA SESIÓN Y COMPARTE</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@ export const Home = () => {
                                             ¿Tienes lo que se necesita para sobrevivir a los retos de programación más escalofriantes? En CodeCreeps, los desafíos no son para los débiles. Acepta el llamado de la oscuridad, demuestra tu destreza y escala en nuestro temido Ranking <strong>MONSTRUOSO</strong>.
                                         </p>
                                         <div className="home__buttons">
-                                            <a href="#" className="button button--ghost" id="button-font">RANKEA AHORA</a>
+                                            <Link to="/challenges" className="button button--ghost" id="button-font">RANKEA AHORA</Link>
                                         </div>
                                     </div>
                                 </div>
