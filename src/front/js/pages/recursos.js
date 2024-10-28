@@ -1,9 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
+import { Context } from '../store/appContext'; // Importa el contexto
 import "../../styles/recursos.css";
 import { Footer } from "../component/footer";
+import Navbar from "../component/navbar";
 
 export const Treats = () => {
+    const { store } = useContext(Context); // Usa el contexto para obtener el usuario actual
+    const { currentUser } = store; // Obtén el usuario actual del store
+    const navigate = useNavigate(); // Inicializa el hook para navegar
+
+    // Efecto que redirige si el usuario no está autenticado
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/login'); // Redirige a la página de inicio si no hay usuario
+        }
+    }, []);
+
     const [activeTab, setActiveTab] = useState(null); // Estado para la card activa
 
     const resources = {
@@ -15,18 +28,18 @@ export const Treats = () => {
             { title: "Aprende Angular", url: "https://www.youtube.com/watch?v=f7unUpshmpA&t=1s" }
         ],
         documents: [
-            { title: "Flask Documentation", url: "https://flask.palletsprojects.com/en/stable/" },
-            { title: "React Documentation", url: "https://reactjs.org/docs/getting-started.html" },
+            { title: "Documentación de Flask", url: "https://flask.palletsprojects.com/en/stable/" },
+            { title: "Documentación de React", url: "https://reactjs.org/docs/getting-started.html" },
             { title: "TypeScript Handbook", url: "https://www.typescriptlang.org/docs/" },
             { title: "Tailwind CSS", url: "https://tailwindcss.com/docs/installation" },
-            { title: "Angular Documentation", url: "https://v17.angular.io/docs" },
+            { title: "Documentación de Angular", url: "https://v17.angular.io/docs" },
 
         ],
         websites: [
             { title: "Practica Comandos", url: "https://cmdchallenge.com/" },
             { title: "UIverse", url: "https://uiverse.io/" },
             { title: "CodePen", url: "https://codepen.io/" },
-            { title: "V0 AI for Devs", url: "https://v0.dev/" },
+            { title: "V0 AI para Devs", url: "https://v0.dev/" },
             { title: "Practica SQL", url: "https://sqlbolt.com/" }
         ],
     };
@@ -37,32 +50,7 @@ export const Treats = () => {
 
     return (
         <>
-            <nav className="nav container">
-                <Link to="/" className="nav__logo">CodeCreeps</Link>
-                <div className="nav__menu" id="nav-menu">
-                    <ul className="nav__list">
-                        <li className="nav__item">
-                            <a href="/" className="nav__link">Inicio</a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="/challenges" className="nav__link">Trucos</a>
-                        </li>
-                        <li className="nav__item">
-                            <Link to="/Treats" className="nav__link active-link">Tratos</Link>
-                        </li>
-                        <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
-                        <a href="/login" className="button button--ghost">INICIA SESIÓN</a>
-                    </ul>
-                    <div className="nav__close" id="nav-close">
-                        <i className='bx bx-x'></i>
-                    </div>
-                    <img src="https://assets.codepen.io/7773162/nav-img.png" alt="" className="nav__img" />
-                </div>
-                <div className="nav__toggle" id="nav-toggle">
-                    <i className='bx bx-grid-alt'></i>
-                </div>
-            </nav>
-
+            <Navbar />
             <section className="home container" id="home">
                 <div className="swiper home-swiper">
                     <div className="swiper-wrapper">
@@ -72,18 +60,18 @@ export const Treats = () => {
                                     <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />
                                     <div className="home__indicator"></div>
                                     <div className="home__details-img">
-                                        <h4 className="home__details-title">Pocion mágica</h4>
+                                        <h4 className="home__details-title" id="treats-subtitle">Pocion mágica</h4>
                                         <span className="home__details-subtitle">para codear como un #pro</span>
                                     </div>
                                 </div>
                                 <div className="home__data">
-                                    <h3 className="home__subtitle">Descubre los trucos y herramientas que encantarán tus habilidades de programación</h3>
-                                    <h1 className="home__title">LOS <br /> RECURSOS MÁS<br /> TENEBROSOS </h1>
+                                    <h3 className="home__subtitle" id="treats-subtitle">Descubre los trucos y herramientas que encantarán tus habilidades de programación</h3>
+                                    <h1 className="home__title" id="treats-title">LOS <br /> RECURSOS MÁS<br /> TENEBROSOS </h1>
                                     <p className="home__description">
                                         Atrévete a explorar los rincones más oscuros de nuestro catálogo de recursos. Estos son conjuros prohibidos que potenciarán tus habilidades de programación. Solo los más valientes osarán usarlos para desatar su verdadero poder. ¿Te atreves a enfrentarte a los conocimientos más tenebrosos y dominar el código que acecha <strong>en las sombras?</strong>
                                     </p>
                                     <div className="home__buttons">
-                                        <a href="#treat" className="button button--ghost">CODEA AHORA</a>
+                                        <a href="#treat" className="button button--ghost" id="button-font">APRENDE AHORA</a>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +82,7 @@ export const Treats = () => {
             </section>
 
             <section className="section about" id="treat">
-                <h1 className="text-center">Elige tu camino</h1>
+                <h1 className="text-center" id="treats-main-title">Elige tu camino</h1>
                 <div className="cards__container">
                     {/* Tarjeta de Videos */}
                     <div
@@ -103,7 +91,7 @@ export const Treats = () => {
                     >
                         <i className="fa-brands fa-youtube fa-2x"></i>
                         <div className="card__content">
-                            <p className="card__title">Videos</p>
+                            <p className="card__title" id="treats-title">Videos</p>
                             <p className="card__description">
                                 Sumérgete en nuestra cripta de videos espeluznantes y aprende a conjurar código oscuro paso a paso. ¡No apto para corazones débiles!
                             </p>
@@ -117,7 +105,7 @@ export const Treats = () => {
                     >
                         <i className="fa-solid fa-file-alt fa-2x"></i>
                         <div className="card__content">
-                            <p className="card__title">Documentación</p>
+                            <p className="card__title" id="treats-title">Documentación</p>
                             <p className="card__description">
                                 Consulta nuestros grimorios malditos llenos de documentación oscura. Aquí encontrarás todos los hechizos de código que necesitas para sobrevivir a nuestros retos.
                             </p>
@@ -131,7 +119,7 @@ export const Treats = () => {
                     >
                         <i className="fa-solid fa-globe fa-2x"></i>
                         <div className="card__content">
-                            <p className="card__title">Webs Recomendadas</p>
+                            <p className="card__title" id="treats-title">Webs Recomendadas</p>
                             <p className="card__description">
                                 Explora portales malditos con nuestras webs recomendadas, seleccionadas especialmente para guiarte por los caminos más oscuros del conocimiento.
                             </p>
@@ -150,6 +138,7 @@ export const Treats = () => {
                                     className="resource-item" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
+                                    id="treats-title"
                                 >
                                     {item.title}
                                 </a>

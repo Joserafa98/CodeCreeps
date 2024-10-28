@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Reto
+from api.models import db, User, Reto, Mensaje
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json  # Asegúrate de importar el módulo json
@@ -151,6 +151,29 @@ def eliminar_todos_los_retos():
         return jsonify({"msg": "Todos los retos han sido eliminados."}), 200
     except Exception as e:
         return jsonify({"msg": "Error al eliminar todos los retos", "error": str(e)}), 500
+
+
+# === Chat General ===
+
+@api.route('/foro/mensajes', methods=['GET'])
+def obtener_mensajes():
+    """Obtiene todos los mensajes del chat general"""
+    mensajes = Mensaje.query.all()
+    return jsonify([mensaje.serialize() for mensaje in mensajes]), 200
+
+@api.route('/foro/mensajes', methods=['POST'])
+@jwt_required()
+def agregar_mensaje():
+    """Permite a un usuario autenticado enviar un mensaje en el chat general"""
+    usuario_id = get_jwt_identity()
+    contenido = request.json.get("contenido")
+    if not contenido:
+        return jsonify({"msg": "El contenido del mensaje es requerido"}), 400
+
+    nuevo_mensaje = Mensaje(contenido=contenido, usuario_id=usuario_id)
+    db.session.add(nuevo_mensaje)
+    db.session.commit()
+    return jsonify(nuevo_mensaje.serialize()), 201
 
 if __name__ == '__main__':
     api.run(debug=True)
