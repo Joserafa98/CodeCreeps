@@ -7,6 +7,7 @@ import Beatriz from "../../img/Beatriz.jpg";
 import calabaza from "../../img/calabaza.jpg";
 import espantapajaros from "../../img/espantapajaros.jpg";
 import spooky from "../../img/spooky.jpg";
+import Navbar from "../component/navbar";
 
 export const AboutUs = () => {
     const navigate = useNavigate(); // Hook para redirigir
@@ -50,6 +51,7 @@ export const AboutUs = () => {
 
     return (
         <>
+        <Navbar />
             {/* Sección 1: Calabaza */}
             <div className="about-us" style={sectionStyle1}>
                 <div className="container text-overlay" style={{ background: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '10px' }}>

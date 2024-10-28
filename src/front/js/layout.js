@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-
+import Profile from "./pages/ProfileUser";
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import SignUp from "./pages/signup";
@@ -35,10 +35,14 @@ const Layout = () => {
                         <Route element={<AboutUs />} path="/aboutUs" />
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Treats />} path="/Treats" />
+<<<<<<< HEAD
                         <Route element={<MiniJuegos />} path="/miniJuegos" />
                         <Route element={<MemorySpooky />} path="/memory-Spooky" />
                         <Route element={<LightsOut />} path="/lights-Out" />
                         <Route element={<SnakeGame />} path="/snake-de-halloween" />
+=======
+                        <Route element={<Profile />} path="/profile" />
+>>>>>>> main
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

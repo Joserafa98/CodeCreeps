@@ -2,9 +2,10 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Clasificacion, Reto
+from api.models import db, User, Reto, Mensaje
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+import json  # Asegúrate de importar el módulo json
 
 #JWT
 from flask_jwt_extended import create_access_token
@@ -21,23 +22,6 @@ CORS(api)
 def obtener_retros():
     retos = Reto.query.all()
     return jsonify([reto.serialize() for reto in retos])
-
-@api.route('/api/clasificaciones', methods=['POST'])
-def crear_clasificacion():
-    data = request.json
-    nueva_clasificacion = Clasificacion(
-        user_id=data['user_id'],
-        reto_id=data['reto_id'],
-        estado=data['estado']
-    )
-    db.session.add(nueva_clasificacion)
-    db.session.commit()
-    return jsonify(nueva_clasificacion.serialize()), 201
-
-@api.route('/api/clasificaciones/<int:user_id>', methods=['GET'])
-def obtener_clasificaciones(user_id):
-    clasificaciones = Clasificacion.query.filter_by(user_id=user_id).all()
-    return jsonify([clasificacion.serialize() for clasificacion in clasificaciones])
 
 # Registro de usuario
 @api.route('/signup', methods=['POST'])
@@ -99,6 +83,97 @@ def get_user_by_id(user_id):
         return jsonify({"msg": "Usuario no encontrado"}), 404  
     
     return jsonify(user.serialize()), 200  
+
+
+# Ruta para recuperar todos los retos o un reto específico por ID
+@api.route('/retos', methods=['GET'])
+@api.route('/retos/<int:id>', methods=['GET'])
+def obtener_retos(id=None):
+    if id is None:
+        # Recupera todos los retos de la base de datos
+        retos = Reto.query.all()  # Obtiene todos los registros de la tabla Reto
+        return jsonify([reto.serialize() for reto in retos]), 200  # Devuelve una lista de retos
+    else:
+        # Recupera un reto específico por ID
+        reto = Reto.query.get(id)  # Busca el reto por ID
+        if reto is None:
+            return jsonify({"msg": "Reto no encontrado"}), 404
+        return jsonify(reto.serialize()), 200  # Devuelve el reto encontrado
+
+@api.route('/retos', methods=['POST'])
+def agregar_retos():
+    data = request.json
+
+    if not data:
+        return jsonify({"msg": "No se proporcionaron datos."}), 400
+
+    if 'nombre_reto' in data and Reto.query.filter_by(nombre_reto=data['nombre_reto']).first():
+        return jsonify({"msg": "El reto ya existe."}), 409
+
+    nuevo_reto = Reto(
+        nombre_reto=data.get('nombre_reto'),
+        descripcion=data.get('descripcion'),
+        dificultad=data.get('dificultad'),
+        lenguaje=data.get('lenguaje'),
+        pistas=data.get('pistas'),
+        tests=json.dumps(data.get('tests', [])),  # Serializa los tests
+        codigo=data.get('codigo'),
+    )
+
+    try:
+        db.session.add(nuevo_reto)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"msg": "Error al guardar el reto.", "error": str(e)}), 500
+
+    return jsonify(nuevo_reto.serialize()), 201
+
+# Ruta para eliminar un reto específico por ID
+@api.route('/retos/<int:id>', methods=['DELETE'])
+def eliminar_reto(id):
+    reto = Reto.query.get(id)  # Busca el reto por ID
+
+    if reto is None:
+        return jsonify({"msg": "Reto no encontrado"}), 404
+
+    db.session.delete(reto)  # Elimina el reto
+    db.session.commit()  # Guarda los cambios
+
+    return jsonify({"msg": "Reto eliminado exitosamente"}), 200
+
+# Ruta para eliminar todos los retos
+@api.route('/retos/clear', methods=['DELETE'])
+def eliminar_todos_los_retos():
+    try:
+        db.session.query(Reto).delete()  # Elimina todos los registros de la tabla Reto
+        db.session.commit()  # Guarda los cambios
+        return jsonify({"msg": "Todos los retos han sido eliminados."}), 200
+    except Exception as e:
+        return jsonify({"msg": "Error al eliminar todos los retos", "error": str(e)}), 500
+
+
+# === Chat General ===
+
+@api.route('/foro/mensajes', methods=['GET'])
+def obtener_mensajes():
+    """Obtiene todos los mensajes del chat general"""
+    mensajes = Mensaje.query.all()
+    return jsonify([mensaje.serialize() for mensaje in mensajes]), 200
+
+@api.route('/foro/mensajes', methods=['POST'])
+@jwt_required()
+def agregar_mensaje():
+    """Permite a un usuario autenticado enviar un mensaje en el chat general"""
+    usuario_id = get_jwt_identity()
+    contenido = request.json.get("contenido")
+    if not contenido:
+        return jsonify({"msg": "El contenido del mensaje es requerido"}), 400
+
+    nuevo_mensaje = Mensaje(contenido=contenido, usuario_id=usuario_id)
+    db.session.add(nuevo_mensaje)
+    db.session.commit()
+    return jsonify(nuevo_mensaje.serialize()), 201
 
 if __name__ == '__main__':
     api.run(debug=True)
