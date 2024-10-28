@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import '../../styles/Profile.css';
+import Navbar from '../component/navbar';
 
 const Profile = () => {
   const { store, actions } = useContext(Context);
@@ -48,6 +49,8 @@ const Profile = () => {
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="layout">
       <div className="profile">
         <div className="profile__picture">
@@ -57,7 +60,7 @@ const Profile = () => {
         <div className="profile__header">
           <div className="profile__account">
             {!isEditing ? (
-              <h4 className="profile__username">{userData.username || "Usuario"}</h4>
+              <h4 className="profile__username">{userData.email || "Usuario"}</h4>
             ) : (
               <input
                 type="email"
@@ -103,6 +106,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
