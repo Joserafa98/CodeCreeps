@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 
 /* VARIABLES CSS */
 :root {
@@ -1031,6 +1032,12 @@ button {
 .card:active {
   transform: scale(0.95); /* Efecto de zoom al hacer clic */
 }
-
+#treats-main-title, #treats-subtitle, #treats-title {
+  font-family: 'Creepster', cursive;
+}
+#button-font{
+  font-family: 'Creepster', cursive;
+  font-size: larger;
+}
 
   

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 /* VARIABLES CSS */
 :root {
   --header-height: 3.5rem;
@@ -851,5 +851,10 @@ button {
   );
   filter: blur(157.708px);
 }
-
-
+#home-title, #home-subtitle{
+    font-family: 'Creepster', cursive;
+}
+#button-font{
+  font-family: 'Creepster', cursive;
+  font-size: larger;
+}
