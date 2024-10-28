@@ -70,3 +70,11 @@
   .nav__link:hover {
     color: var(--text-color);
   }
+  .profile-img {
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: 40px;
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    object-fit: cover; /* Asegúrate de que la imagen no se distorsione */
+    margin-right: 10px; /* Espaciado entre la imagen y el botón */
+    border: 2px solid #e66c01;
+}

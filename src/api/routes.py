@@ -100,5 +100,25 @@ def get_user_by_id(user_id):
     
     return jsonify(user.serialize()), 200  
 
+@api.route('/user/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+    
+    data = request.get_json()
+
+  
+    if 'email' in data:
+        user.email = data['email']
+
+    try:
+        db.session.commit()
+        return jsonify(user.serialize()), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": "Failed to update user", "message": str(e)}), 500
+
 if __name__ == '__main__':
     api.run(debug=True)
