@@ -67,11 +67,26 @@
   text-decoration: none;
   transition: ease-in-out 250ms background, ease-in-out 250ms color;
 }
-
 .profile__button:hover {
   background: #e66c01;
   color: #ffffff;
 }
+
+#EditButton {
+  display: inline-block;
+  font-size: 12px;
+  padding: 6px 12px; /* Menor padding para que el botón sea más pequeño */
+  border-radius: 25px;
+  border: 1px solid #e66c01;
+  color: #e66c01;
+  background-color: transparent;
+  transition: ease-in-out 250ms background, ease-in-out 250ms color;
+}
+#EditButton:hover {
+  background-color: #e66c01; /* Fondo naranja al hacer hover */
+  color: #ffffff; /* Texto blanco al hacer hover */
+}
+
 
 .profile__edit {
   flex: none;

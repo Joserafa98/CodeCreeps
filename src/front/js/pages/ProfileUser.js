@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import '../../styles/Profile.css';
 import Navbar from '../component/navbar';
+import ProfilePic from "../../img/fotoperfil.png"; 
 
 const Profile = () => {
   const { store, actions } = useContext(Context);
@@ -55,7 +56,7 @@ const Profile = () => {
     <div className="layout">
       <div className="profile">
         <div className="profile__picture">
-          <img src={userData.profilePicture || "http://i.pravatar.cc/250?img=58"} alt={userData.username || "User"} />
+          <img src={userData.profilePicture || ProfilePic} alt={userData.username || "User"} />
         </div>
 
         <div className="profile__header">
@@ -77,7 +78,7 @@ const Profile = () => {
 
           <div className="profile__edit">
             {!isEditing ? (
-              <a className="profile__button" onClick={handleEditClick}>
+              <a className="profile__button" id='EditButton' onClick={handleEditClick}>
                 Editar Perfil
               </a>
             ) : (
