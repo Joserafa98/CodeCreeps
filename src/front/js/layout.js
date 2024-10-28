@@ -11,6 +11,10 @@ import Retos from "./pages/retos"; // Importación corregida
 import { AboutUs } from "./pages/aboutUs";
 import HalloweenCodingChallenge from "./component/CourseCard";
 import { Treats } from "./pages/recursos";
+import { MiniJuegos } from "./pages/miniJuegos";
+import  MemorySpooky from "./pages/memorySpooky";
+import LightsOut from "./pages/lightsOut";
+import SnakeGame from "./pages/snakeGame";
 
 //create your first component
 const Layout = () => {
@@ -31,6 +35,10 @@ const Layout = () => {
                         <Route element={<AboutUs />} path="/aboutUs" />
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Treats />} path="/Treats" />
+                        <Route element={<MiniJuegos />} path="/miniJuegos" />
+                        <Route element={<MemorySpooky />} path="/memory-Spooky" />
+                        <Route element={<LightsOut />} path="/lights-Out" />
+                        <Route element={<SnakeGame />} path="/snake-de-halloween" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

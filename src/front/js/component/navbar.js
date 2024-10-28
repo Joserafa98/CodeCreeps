@@ -18,7 +18,12 @@ const Navbar = () => {
                 <li className="nav__item">
                     <Link to="/Treats" className="nav__link active-link">Tratos</Link>
                 </li>
+                <li className='nav_item'>
+                <Link to="/miniJuegos" className="button button--ghost">Mini Juego</Link>
+                </li>
+                <li className='nav_item'>
                 <Link to="/aboutUs" className="button button--ghost">Sobre nosotros</Link>
+                </li>
                 <a href="/signup" className="button button--ghost">ÚNETE AHORA</a>
                 <a href="/login" className="button button--ghost">INICIA SESIÓN</a>
             </ul>
