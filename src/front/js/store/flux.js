@@ -116,6 +116,43 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({ error: error.message });
                 }
             },
+
+            getUserData: async (userId) => {
+                try {
+                    const response = await fetch(`${process.env.BACKEND_URL}/api/usuarios/${userId}`);
+                    
+                    if (!response.ok) {
+                        throw new Error("Error al obtener los datos del usuario");
+                    }
+            
+                    const userData = await response.json();
+                    setStore({ currentUser: userData }); // Almacena los datos en el store
+                } catch (error) {
+                    console.error("Error al obtener los datos del usuario:", error);
+                }
+            },
+            
+            updateUser: async (userId, updatedData) => {
+                try {
+                    const response = await fetch(`${process.env.BACKEND_URL}/api/user/${userId}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(updatedData), 
+                    });
+            
+                    if (!response.ok) {
+                        throw new Error("Failed to update user");
+                    }
+            
+                    const data = await response.json();
+                    console.log("User updated successfully:", data);
+                    return data;
+                } catch (error) {
+                    console.error("Error updating user:", error);
+                }
+            },
             
             // Función para crear una clasificación
             createClasificacion: async (userId, retoId) => {
@@ -141,7 +178,22 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error al crear la clasificación:", error);
                     return { success: false, msg: error.message };
                 }
-            },            
+            },   
+            getUserClasificaciones: async (userId) => {
+                try {
+                    const response = await fetch(`${process.env.BACKEND_URL}/api/clasificaciones/${userId}`);
+                    
+                    if (!response.ok) {
+                        throw new Error("Error al obtener las clasificaciones del usuario");
+                    }
+            
+                    const clasificaciones = await response.json();
+                    setStore({ clasificaciones }); // Guarda las clasificaciones en el store
+                } catch (error) {
+                    console.error("Error al obtener las clasificaciones del usuario:", error);
+                }
+            },
+                     
         }
     };
 };

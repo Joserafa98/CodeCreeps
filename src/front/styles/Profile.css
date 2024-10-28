@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+
+* {
+  box-sizing: border-box;
+}
+
+
+.layout {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(5px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.profile {
+  animation: popUp ease-in-out 350ms;
+  background: transparent;
+  border: 2px solid #e66c01; /* Borde naranja */
+  border-radius: 25px;
+  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+  margin-top: 40px;
+  padding: 28px 30px 30px 35px;
+  position: relative;
+  width: 500px;
+  color: #e66c01; /* Texto naranja */
+}
+
+.profile__account {
+  align-self: center;
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  padding-left: 135px;
+}
+
+.profile__button {
+  border-radius: 50px;
+  border: 1px solid #e66c01; /* Borde botón naranja */
+  color: #e66c01; /* Texto botón naranja */
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: ease-in-out 250ms background, ease-in-out 250ms color;
+}
+
+.profile__button:hover {
+  background: #e66c01;
+  color: #ffffff;
+}
+
+.profile__edit {
+  flex: none;
+  margin-left: 30px;
+  width: 140px;
+}
+
+.profile__header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.profile__icon {
+  flex: none;
+  font-size: 1.5em;
+  margin-right: 10px;
+  padding-top: 15px;
+  color: #e66c01; /* Icono naranja */
+}
+
+.profile__key {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  color: #e66c01; /* Texto de clave naranja */
+}
+
+.profile__picture {
+  background: #e66c01;
+  border-radius: 100px;
+  border: 10px solid #e66c01;
+  height: 125px;
+  position: absolute;
+  top: -40px;
+  width: 125px;
+}
+
+.profile__picture:before {
+  border-radius: 100px;
+  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+  content: "";
+  height: calc(100% + 20px);
+  left: -10px;
+  position: absolute;
+  top: -10px;
+  width: calc(100% + 20px);
+  z-index: -1;
+}
+
+.profile__picture img {
+  border-radius: 100px;
+  height: 100%;
+  width: 100%;
+}
+
+.profile__stat {
+  animation: slideUp ease-in-out 350ms forwards;
+  border-right: 1px solid #e9e9e9;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  opacity: 0;
+  padding: 10px 4px;
+  transform: translateY(5px);
+  color: #e66c01; /* Texto de estadísticas naranja */
+}
+
+.profile__stat:last-of-type {
+  border-right: none;
+}
+
+.profile__stat:nth-child(1) {
+  animation-delay: 300ms;
+}
+
+.profile__stat:nth-child(2) {
+  animation-delay: 400ms;
+}
+
+.profile__stat:nth-child(3) {
+  animation-delay: 500ms;
+}
+
+.profile__stats {
+  display: flex;
+}
+
+.profile__username {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin: 0;
+  text-align: right;
+  color: #e66c01; /* Nombre de usuario naranja */
+}
+
+.profile__value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 5px;
+  color: #e66c01; /* Valor de estadística naranja */
+}
+
+.input {
+  border: 2px solid transparent;
+  width: 15em;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #F3F3F3;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.input:hover,
+.input:focus {
+  border: 2px solid #e66c01;
+  box-shadow: 0px 0px 0px 7px rgba(193, 98, 4, 0.745);
+  background-color: white;
+}
+.profile__edit .profile__button {
+  margin-left: -1.9em; /* Reduce el margen izquierdo del botón */
+}
