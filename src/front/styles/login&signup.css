@@ -62,7 +62,7 @@ a:hover {
 }
 
 .form-wrapper {
-    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco más opaco para mejorar la legibilidad */
+    background-color: rgba(0, 0, 0, 0.936); /* Fondo blanco más opaco para mejorar la legibilidad */
     padding: 50px; /* Aumentar el espaciado interno para un formulario más "gordo" */
     border-radius: 20px; /* Bordes más redondeados */
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* Sombra para resaltar el formulario */

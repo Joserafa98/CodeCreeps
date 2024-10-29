@@ -9,6 +9,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+    difficulties = db.Column(db.String(255), nullable=True)  # Almacena dificultades como texto (ej. "Fácil,Intermedio")
+    preferred_languages = db.Column(db.String(255), nullable=True)  # Almacena lenguajes como texto (ej. "JavaScript,Python")
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -17,7 +19,10 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "difficulties": self.difficulties.split(',') if self.difficulties else [],  
+            "preferred_languages": self.preferred_languages.split(',') if self.preferred_languages else []  
         }
+
 
 
 class Reto(db.Model):

@@ -1,0 +1,79 @@
+/* snakeGame.css */
+
+.snake-game-container {
+    position: relative;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.game-area {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Cambiar el nombre de la clase grid a game-grid */
+.game-grid {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+/* Cambiar el nombre de la clase row a game-row */
+.game-row {
+    display: flex;
+}
+
+/* Clase para las celdas del juego */
+.unique-cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: #000;
+}
+
+/* Estilo para la parte de la serpiente */
+.unique-snake {
+    background-color: #00ff00;
+}
+
+/* Estilo para la comida */
+.unique-food {
+    background-color: red;
+}
+
+.game-over {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-restart,
+.btn-halloween {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-halloween:hover {
+    background-color: #ba68c8;
+}
+
+.btn-restart:hover {
+    background-color: #f44336;
+}

@@ -25,7 +25,7 @@ const Signup = () => {
 
         if (response.success) {
             setAlert({ show: true, message: '¡Registro exitoso! 🎉 Prepárate para desafiar tus habilidades de programación en esta noche de Halloween.', type: 'success' });
-            setTimeout(() => navigate("/login"), 2000); // Redirige después de un breve retraso
+            setTimeout(() => navigate("/login"), 2000); // Redirige a /signup/complete-profile después de un breve retraso
         } else {
             setAlert({ show: true, message: response.msg || '¡Boo! Error en el registro. Por favor, inténtalo de nuevo. 👻', type: 'danger' });
             console.log("Error en el registro", response.msg);
