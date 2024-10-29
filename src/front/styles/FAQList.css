@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 
+.container {
+    padding: 0 15px; /* Espaciado horizontal para móviles */
+}
+
 .list-group-item {
     background-color: transparent; /* Fondo transparente */
     border: 2px solid #e66c01; /* Borde naranja */
@@ -28,6 +32,36 @@
     font-size: 1rem; /* Tamaño de fuente */
 }
 
+/* Título de la sección FAQ */
 #home-title {
     font-family: 'Creepster', cursive;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    #Question {
+        font-size: 1.1rem; /* Tamaño de fuente para tabletas */
+    }
+
+    #Answer {
+        font-size: 0.9rem; /* Tamaño de fuente más pequeño para tabletas */
+    }
+
+    .list-group-item {
+        padding: 15px; /* Reducir espaciado en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    #Question {
+        font-size: 1rem; /* Tamaño de fuente para móviles */
+    }
+
+    #Answer {
+        font-size: 0.8rem; /* Tamaño de fuente aún más pequeño para móviles */
+    }
+
+    .list-group-item {
+        padding: 10px; /* Reducir espaciado aún más en móviles */
+    }
 }

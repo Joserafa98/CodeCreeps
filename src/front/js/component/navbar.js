@@ -1,47 +1,81 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Context } from '../store/appContext';
-import "../../styles/Navbar.css"; 
-import ProfilePic from "../../img/fotoperfil.png"; 
+import "../../styles/Navbar.css"; // Asegúrate de que el archivo CSS esté vinculado
+import ProfilePic from "../../img/fotoperfil.png";
 
 const Navbar = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
     const location = useLocation();
-    const { currentUser } = store; // Obtén el usuario actual del store
+    const { currentUser } = store;
+    
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [animationClass, setAnimationClass] = useState('');
 
     const handleLogout = async () => {
-        await actions.logoutUser(); // Llama a la acción de logout
-        navigate('/'); // Redirige a la página principal después del logout
+        await actions.logoutUser();
+        navigate('/');
+    };
+
+    const toggleMenu = () => {
+        if (isMenuOpen) {
+            setAnimationClass('fade-slide-out');
+            setTimeout(() => {
+                setIsMenuOpen(false);
+                setAnimationClass('');
+            }, 500);
+        } else {
+            setIsMenuOpen(true);
+            setAnimationClass('fade-slide-in');
+        }
+    };
+
+    const closeMenu = () => {
+        if (isMenuOpen) {
+            setAnimationClass('fade-slide-out');
+            setTimeout(() => {
+                setIsMenuOpen(false);
+                setAnimationClass('');
+            }, 500);
+        }
     };
 
     return (
         <nav className="nav container">
-            <Link to="/" className="nav__logo" id='Title_logo'>CodeCreeps</Link>
-            <div className="nav__menu" id="nav-menu">
+            <Link to="/" className="nav__logo" id="Title_logo">CodeCreeps</Link>
+
+            <button className="nav__toggle" onClick={toggleMenu}>
+                {isMenuOpen ? '✕' : '☰'}
+            </button>
+
+            <div className={`nav__menu ${isMenuOpen ? 'show-menu' : ''} ${animationClass}`} id="nav-menu">
                 <ul className="nav__list">
                     <li className="nav__item">
                         <Link 
                             to="/" 
                             className={`nav__link ${location.pathname === '/' ? 'active-link' : ''}`}
+                            onClick={closeMenu}
                         >
                             Inicio
                         </Link>
                     </li>
-                    {currentUser && ( // Muestra los enlaces solo si hay un usuario autenticado
+                    {currentUser && (
                         <>
                             <li className="nav__item">
                                 <Link 
                                     to="/challenges" 
                                     className={`nav__link ${location.pathname === '/challenges' ? 'active-link' : ''}`}
+                                    onClick={closeMenu}
                                 >
                                     Trucos
                                 </Link>
                             </li>
                             <li className="nav__item">
                                 <Link 
-                                    to="/Treats" 
-                                    className={`nav__link ${location.pathname === '/Treats' ? 'active-link' : ''}`}
+                                    to="/treats" 
+                                    className={`nav__link ${location.pathname === '/treats' ? 'active-link' : ''}`}
+                                    onClick={closeMenu}
                                 >
                                     Tratos
                                 </Link>
@@ -50,6 +84,7 @@ const Navbar = () => {
                                 <Link 
                                     to="/minijuegos" 
                                     className={`nav__link ${location.pathname === '/minijuegos' ? 'active-link' : ''}`}
+                                    onClick={closeMenu}
                                 >
                                     Mini Juegos
                                 </Link>
@@ -58,6 +93,7 @@ const Navbar = () => {
                                 <Link 
                                     to="/chatgeneral" 
                                     className={`nav__link ${location.pathname === '/chatgeneral' ? 'active-link' : ''}`}
+                                    onClick={closeMenu}
                                 >
                                     Chat oscuro
                                 </Link>
@@ -66,26 +102,36 @@ const Navbar = () => {
                     )}
                     {currentUser ? (
                         <>
-                            <Link to="/profile" className="nav__link">
-                                <img src={currentUser.profilePicture || ProfilePic} alt="Profile" className="profile-img" />
-                            </Link>
-                            <button onClick={handleLogout} className="button button--ghost" id='logout-button'>Cerrar sesión</button>
+                            <li className="nav__item">
+                                <Link to="/profile" className="nav__link" onClick={closeMenu}>
+                                    <img 
+                                        src={currentUser.profilePicture || ProfilePic} 
+                                        alt="Profile" 
+                                        className="profile-img" 
+                                    />
+                                </Link>
+                            </li>
+                            <li className="nav__item">
+                                <button onClick={handleLogout} className="button button--ghost" id="logout-button">Cerrar sesión</button>
+                            </li>
                         </>
                     ) : (
                         <>
-                            <Link to="/aboutUs" className="button button--ghost" id='user-button'>Sobre nosotros</Link>
-                            <Link to="/signup" className="button button--ghost" id='user-button'>ÚNETE AHORA</Link>
-                            <Link to="/login" className="button button--ghost" id='user-button'>INICIA SESIÓN</Link>
+                            <li className="nav__item">
+                                <Link to="/aboutUs" className="button button--ghost" onClick={closeMenu}>Sobre nosotros</Link>
+                            </li>
+                            <li className="nav__item">
+                                <Link to="/signup" className="button button--ghost" onClick={closeMenu}>ÚNETE AHORA</Link>
+                            </li>
+                            <li className="nav__item">
+                                <Link to="/login" className="button button--ghost" onClick={closeMenu}>INICIA SESIÓN</Link>
+                            </li>
                         </>
                     )}
                 </ul>
-                <div className="nav__close" id="nav-close">
-                    <i className='bx bx-x'></i>
+                <div className="nav__close" onClick={toggleMenu}>
+                    <i className="bx bx-x"></i>
                 </div>
-                <img src="https://assets.codepen.io/7773162/nav-img.png" alt="" className="nav__img" />
-            </div>
-            <div className="nav__toggle" id="nav-toggle">
-                <i className='bx bx-grid-alt'></i>
             </div>
         </nav>
     );

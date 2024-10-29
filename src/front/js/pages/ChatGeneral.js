@@ -27,7 +27,7 @@ const ChatGeneral = () => {
         };
 
         fetchMensajes();
-        const intervalId = setInterval(fetchMensajes, 2000); // Actualiza cada 5 segundos
+        const intervalId = setInterval(fetchMensajes, 2000); // Actualiza cada 2 segundos
 
         return () => clearInterval(intervalId);
     }, []);
@@ -68,7 +68,6 @@ const ChatGeneral = () => {
     const handleEnviarMensaje = async () => {
         // No enviar si no hay mensaje ni archivo
         if (!nuevoMensaje.trim() && !file) {
-            //setError("El contenido del mensaje o la imagen es requerido.");
             return;
         }
 
@@ -105,6 +104,15 @@ const ChatGeneral = () => {
             if (!response.ok) {
                 const errorMessage = await response.json(); // Captura el mensaje de error
                 console.error("Error en respuesta del servidor:", errorMessage);
+
+                // Manejo de error 401: Token ha expirado
+                if (response.status === 401 && errorMessage.msg === 'Token has expired') {
+                    console.error("Token ha expirado. Redirigiendo a inicio de sesión.");
+                    localStorage.removeItem('token'); // Limpiar el token
+                    window.location.href = '/login'; // Redirigir a la página de inicio de sesión
+                    return; // No continuar
+                }
+                
                 throw new Error(`Error al enviar el mensaje: ${errorMessage.msg || "Error desconocido"}`);
             }
 
@@ -157,22 +165,22 @@ const ChatGeneral = () => {
     };
 
     return (
-        <div className="chat-container">
+        <div className="chat-container mobile-chat-container"> {/* Agrega clase específica para móviles */}
             <Navbar />
             <h2>🎃 Chat de Halloween 🎃</h2>
 
             {error && <p className="error">{error}</p>}
 
             {/* Contenedor de mensajes */}
-            <div className="messages-container">
+            <div className="messages-container mobile-messages-container">
                 {mensajes.map((msg) => (
-                    <div key={msg.id} className="message">
+                    <div key={msg.id} className="message mobile-message">
                         <p><strong>{msg.usuario_email}:</strong> {msg.contenido}</p>
                         {msg.imagen_url && (
                             <img 
                                 src={msg.imagen_url} 
                                 alt="Imagen enviada" 
-                                className="message-image" 
+                                className="message-image mobile-message-image" 
                                 style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }}
                                 onClick={() => handleImageClick(msg.imagen_url)} // Al hacer clic, abrir el zoom
                             />
@@ -183,16 +191,16 @@ const ChatGeneral = () => {
                 <div ref={chatEndRef} />
             </div>
 
-            <div className="message-input-container">
+            <div className="message-input-container mobile-message-input-container">
                 <input
                     type="text"
                     placeholder="Escribe un mensaje tenebroso..."
                     value={nuevoMensaje}
                     onChange={(e) => setNuevoMensaje(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    style={{ flex: 1 }} // Hacer que el input ocupe el espacio disponible
+                    className="mobile-input" // Clase específica para móviles
                 />
-                <button onClick={handleFileInputClick} style={{ marginLeft: '10px', background: 'fa8800', border: 'none', cursor: 'pointer' }}>
+                <button onClick={handleFileInputClick} className="mobile-button">
                     <span role="img" aria-label="camera">📷</span> {/* Icono de cámara dentro del input */}
                 </button>
                 <input
@@ -202,7 +210,9 @@ const ChatGeneral = () => {
                     style={{ display: 'none' }} // Ocultar el input
                     ref={fileInputRef} // Referencia al input
                 />
-                <button onClick={handleEnviarMensaje} disabled={loadingImage}>Enviar 👻</button>
+                <button onClick={handleEnviarMensaje} disabled={loadingImage} className="mobile-send-button">
+                    Enviar 👻
+                </button>
                 {loadingImage && <span>Cargando imagen...</span>}
             </div>
 

@@ -858,3 +858,70 @@ button {
   font-family: 'Creepster', cursive;
   font-size: larger;
 }
+
+/* Estilos generales */
+.home__subtitle, .home__title, .category__title, .about__title {
+  font-size: 2rem; /* tamaño de fuente para escritorio */
+  font-family: "Creepster", sans-serif;
+
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .home__subtitle, .home__title, .category__title, .about__title {
+      font-size: 5vw; /* Tamaño de fuente responsivo usando vw */
+      line-height: 1.2; /* Mejora la legibilidad */
+  }
+
+  .home__content {
+      flex-direction: column; /* Poner el contenido en columna en pantallas pequeñas */
+      align-items: center; /* Centrar el contenido */
+      padding: 20px; /* Espaciado adicional para el contenido */
+  }
+
+  .home__data {
+      margin-top: 20px; /* Espacio entre imagen y texto */
+      text-align: center; /* Centrar texto */
+  }
+
+  .home__buttons {
+      margin-top: 15px; /* Espacio superior entre botones */
+      flex-direction: column; /* Botones en columna */
+      align-items: center; /* Centrar los botones */
+  }
+
+  .category__data {
+      text-align: center; /* Centrar texto en las categorías */
+      padding: 10px; /* Espaciado para evitar corte de texto */
+  }
+
+  .about__data {
+      text-align: center; /* Centrar texto en la sección de about */
+      padding: 10px; /* Espaciado para evitar corte de texto */
+  }
+}
+
+@media (max-width: 480px) {
+  .home__subtitle, .home__title, .category__title, .about__title {
+      font-size: 8vw; /* Tamaño de fuente para móviles usando vw */
+      line-height: 1.2; /* Mejora la legibilidad */
+  }
+
+  .home__buttons {
+      margin-top: 15px; /* Espacio superior entre botones */
+      flex-direction: column; /* Botones en columna */
+      align-items: center; /* Centrar los botones */
+  }
+
+  .home__description {
+      padding: 0 10px; /* Espaciado lateral para texto */
+  }
+
+  .about__description {
+      padding: 0 10px; /* Espaciado lateral para texto */
+  }
+
+  .category__data {
+      padding: 10px; /* Espaciado para evitar corte de texto */
+  }
+}

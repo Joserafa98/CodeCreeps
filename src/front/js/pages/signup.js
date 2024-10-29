@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from 'react-router-dom';
 import '../../styles/login&signup.css';
+import Navbar from "../component/navbar";
 
 const Signup = () => {
     const { actions } = useContext(Context);
@@ -24,10 +25,10 @@ const Signup = () => {
         const response = await actions.signupUser(userData); // Llama a la función de registro
 
         if (response.success) {
-            setAlert({ show: true, message: '¡Registro exitoso! 🎉 Prepárate para desafiar tus habilidades de programación en esta noche de Halloween.', type: 'success' });
+            setAlert({ show: true, message: '¡Registro exitoso!', type: 'success' });
             setTimeout(() => navigate("/login"), 2000); // Redirige a /signup/complete-profile después de un breve retraso
         } else {
-            setAlert({ show: true, message: response.msg || '¡Boo! Error en el registro. Por favor, inténtalo de nuevo. 👻', type: 'danger' });
+            setAlert({ show: true, message: response.msg || 'Error en el registro. Por favor, inténtalo de nuevo. 👻', type: 'danger' });
             console.log("Error en el registro", response.msg);
         }
     };
@@ -65,6 +66,8 @@ const Signup = () => {
     };
 
     return (
+        <>
+        <Navbar />
         <div className="row mx-0 auth-wrapper">
             <ul className="circles">
                 <li></li>
@@ -147,6 +150,7 @@ const Signup = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

@@ -213,3 +213,14 @@
 .profile__edit .profile__button {
   margin-left: -1.9em; /* Reduce el margen izquierdo del botón */
 }
+
+.email-input-container {
+  display: flex;
+  align-items: center; /* Alinear verticalmente */
+}
+
+.cancel-icon {
+  margin-left: 10px; /* Espacio entre el input y el icono */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+  color: red; /* Color del icono */
+}

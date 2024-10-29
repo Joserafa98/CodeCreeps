@@ -3,10 +3,12 @@ import { Context } from '../store/appContext';
 import '../../styles/Profile.css';
 import Navbar from '../component/navbar';
 import ProfilePic from "../../img/fotoperfil.png"; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importar FontAwesome para iconos
+import { faTimes } from '@fortawesome/free-solid-svg-icons'; // Icono de cruz
 
 const Profile = () => {
   const { store, actions } = useContext(Context);
-  const { currentUser, clasificaciones } = store;
+  const { currentUser } = store;
   const [userData, setUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [email, setEmail] = useState("");
@@ -14,31 +16,46 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       if (currentUser && currentUser.id) {
-          const user = await actions.getUserData(currentUser.id);
+        try {
+          const response = await fetch(`${process.env.BACKEND_URL}/api/usuarios/${currentUser.id}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${localStorage.getItem("token")}` // Incluye el token si es necesario
+            },
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error al obtener los datos del usuario:", errorData);
+            return;
+          }
+
+          const user = await response.json();
           setUserData(user || {});
           setEmail(user?.email || ""); // Inicializa el campo de email
-      }
-  };
-  
-
-    const fetchClasificaciones = async () => {
-      if (currentUser && currentUser.id) {
-        await actions.getUserClasificaciones(currentUser.id);
+        } catch (error) {
+          console.error("Error en la solicitud para obtener los datos del usuario:", error);
+        }
       }
     };
 
     fetchUserData();
-    fetchClasificaciones();
-  }, []);
+  }, [currentUser]);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  const handleCancelClick = () => {
+    setIsEditing(false); // Cancela la edición y vuelve al estado anterior
+    setEmail(userData.email || ""); // Restablece el email al original
+  };
+
   const handleSaveClick = async () => {
     if (currentUser && currentUser.id) {
       const updatedData = { email };
-      const result = await actions.updateUser(currentUser.id, updatedData);
+      const result = await actions.updateUser(currentUser.id, updatedData); // Suponiendo que tienes esta acción definida
 
       if (result) {
         setUserData((prevData) => ({ ...prevData, email }));
@@ -52,62 +69,51 @@ const Profile = () => {
 
   return (
     <>
-    <Navbar></Navbar>
-    <div className="layout">
-      <div className="profile">
-        <div className="profile__picture">
-          <img src={userData.profilePicture || ProfilePic} alt={userData.username || "User"} />
-        </div>
-
-        <div className="profile__header">
-          <div className="profile__account">
-            {!isEditing ? (
-              <h4 className="profile__username">{userData.email || "Usuario"}</h4>
-            ) : (
-              <input
-                type="email"
-                className="input"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="off"
-              />
-            )}
+      <Navbar />
+      <div className="layout">
+        <div className="profile">
+          <div className="profile__picture">
+            <img src={userData.profilePicture || ProfilePic} alt={userData.username || "User"} />
           </div>
 
-          <div className="profile__edit">
-            {!isEditing ? (
-              <a className="profile__button" id='EditButton' onClick={handleEditClick}>
-                Editar Perfil
-              </a>
-            ) : (
-              <a className="profile__button w-50" onClick={handleSaveClick}>
-                Guardar
-              </a>
-            )}
-          </div>
-        </div>
-
-        <div className="profile__stats">
-          <div className="profile__stat">
-            <div className="profile__icon">
-              <i className="fa-solid fa-medal"></i>
+          <div className="profile__header">
+            <div className="profile__account">
+              {!isEditing ? (
+                <h4 className="profile__username">{userData.email || "Usuario"}</h4>
+              ) : (
+                <div className="email-input-container">
+                  <input
+                    type="email"
+                    className="input email-input" // Añadido para estilizar
+                    placeholder="Introduce tu nuevo correo electrónico"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    autoComplete="off"
+                  />
+                  <FontAwesomeIcon 
+                    icon={faTimes} 
+                    className="cancel-icon" 
+                    onClick={handleCancelClick} // Maneja la cancelación
+                  />
+                </div>
+              )}
             </div>
-            <div className="profile__value">{clasificaciones.length || 0}</div>
-            <div className="profile__key">Challenges</div>
-          </div>
 
-          <div className="profile__stat">
-            <div className="profile__icon profile__icon--blue">
-              <i className="fa-solid fa-trophy"></i>
+            <div className="profile__edit">
+              {!isEditing ? (
+                <a className="profile__button" id='EditButton' onClick={handleEditClick}>
+                  Editar Perfil
+                </a>
+              ) : (
+                <a className="profile__button" onClick={handleSaveClick}>
+                  Guardar
+                </a>
+              )}
             </div>
-            <div className="profile__value">{userData.ranking || 0}</div>
-            <div className="profile__key">Ranking</div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

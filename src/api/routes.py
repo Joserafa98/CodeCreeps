@@ -84,7 +84,7 @@ def get_user_by_id(user_id):
     
     return jsonify(user.serialize()), 200  
 
-@api.route('/api/user/<int:user_id>', methods=['PUT'])
+@api.route('/usuarios/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
     # Busca el usuario en la base de datos
     user = User.query.get(user_id)

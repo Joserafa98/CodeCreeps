@@ -142,3 +142,69 @@ button:hover {
     max-height: 90%; /* Altura máxima del preview */
     border-radius: 10px; /* Opcional: bordes redondeados para la imagen */
 }
+
+/* Estilos móviles específicos */
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 1em; /* Reduce el padding en pantallas pequeñas */
+    }
+
+    .messages-container {
+        padding: 0.5em; /* Reduce el padding en el contenedor de mensajes */
+        max-height: calc(100vh - 150px); /* Ajustar altura para dejar más espacio */
+        overflow-y: auto; /* Habilita el scroll si hay muchos mensajes */
+    }
+
+    .message {
+        padding: 0.5em; /* Reduce el padding en cada mensaje */
+        font-size: 0.9em; /* Tamaño de fuente más pequeño */
+    }
+
+    .timestamp {
+        font-size: 0.7em; /* Tamaño de fuente más pequeño para la marca de tiempo */
+        color: #777; /* Color gris para la fecha */
+    }
+
+    .message-input-container {
+        flex-direction: column; /* Cambia a columna para móviles */
+        align-items: stretch; /* Alinear los elementos para ocupar el ancho completo */
+        margin-top: 10px; /* Espacio superior */
+    }
+
+    .message-input-container input[type="text"],
+    .message-input-container button {
+        width: 100%; /* Los inputs y botones ocupan el ancho completo */
+        margin-bottom: 10px; /* Espacio entre el input y el botón */
+    }
+
+    .message-input-container button {
+        margin-left: 0; /* Elimina el margen izquierdo en móviles */
+    }
+
+    .message-image {
+        max-width: 100%; /* Las imágenes ocupan el ancho completo */
+        height: auto; /* Mantiene la relación de aspecto */
+        border-radius: 5px; /* Bordes redondeados para las imágenes */
+        margin-top: 5px; /* Espacio superior para la imagen */
+    }
+
+    /* Estilos para el modal de vista previa de la imagen */
+    .image-preview-modal {
+        position: fixed; /* Fijar en la pantalla */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semi-transparente */
+        display: flex; /* Usar flexbox para centrar la imagen */
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+    }
+
+    /* Estilo para la imagen en el modal */
+    .image-preview {
+        max-width: 90%; /* Limitar el ancho al 90% de la pantalla */
+        max-height: 90%; /* Limitar la altura al 90% de la pantalla */
+        border-radius: 5px; /* Bordes redondeados */
+    }
+}

@@ -2,6 +2,8 @@
 
 body {
     font-family: 'Arial', sans-serif; /* Cambiamos a una fuente más neutral para el cuerpo */
+    margin: 0; /* Sin margen en el body */
+    padding: 0; /* Sin relleno en el body */
 }
 
 a {
@@ -13,13 +15,15 @@ a:hover {
 }
 
 .auth-wrapper {
-    height: 100vh;
+    min-height: 100vh; /* Usamos min-height para permitir el scroll */
     background-color: #000; /* Fondo negro */
     background: linear-gradient(-45deg, #ff6f00, #000); /* De naranja a negro */
     background-attachment: fixed;
     background-size: cover;
     position: relative; /* Para que los elementos flotantes se posicionen en relación a este contenedor */
     overflow: hidden; /* Evitar que los elementos flotantes salgan del contenedor */
+    padding: 20px; /* Espaciado en móviles */
+    box-sizing: border-box; /* Incluir padding en el cálculo del tamaño */
 }
 
 .btn {
@@ -220,16 +224,11 @@ a:hover {
     cursor: pointer; /* Cambiar el cursor al pasar sobre el icono */
     color: white; /* Color del icono */
     font-size: 1.5rem; /* Tamaño del icono */
-    transition: color 0.3s; /* Transición suave para el color */
-}
-
-.close-icon:hover {
-    color: rgba(255, 0, 0, 0.7); /* Cambiar color en hover para hacer más visible */
 }
 
 @keyframes fadeIn {
     from {
-        opacity: 0;
+        opacity: 0; /* Comienza completamente invisible */
         transform: translateY(-10px); /* Desplazamiento hacia arriba al entrar */
     }
     to {
@@ -267,4 +266,28 @@ a:hover {
     padding: 10px 15px; /* Espaciado interno */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .auth-wrapper {
+        padding: 20px; /* Ajustar el espaciado en pantallas más pequeñas */
+        overflow: auto; /* Permitir scroll */
+    }
+
+    .form-wrapper {
+        padding: 30px; /* Ajustar el espaciado en pantallas más pequeñas */
+    }
+
+    .btn {
+        font-size: 1rem; /* Ajustar tamaño del botón */
+    }
+
+    .welcome-title {
+        font-size: 2.5rem; /* Ajustar tamaño del título en móviles */
+    }
+
+    .welcome-text {
+        font-size: 1rem; /* Ajustar tamaño del texto en móviles */
+    }
 }

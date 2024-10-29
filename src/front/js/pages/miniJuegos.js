@@ -4,6 +4,7 @@ import '../../styles/miniJuegos.css';
 import calabaza2 from "../../img/calabaza2.jpg"; 
 import teladearaña from "../../img/teladearaña.jpg"; 
 import luna from "../../img/luna.jpg"; 
+import Navbar from "../component/navbar";
 
 export const MiniJuegos = () => {
     const navigate = useNavigate(); 
@@ -47,6 +48,7 @@ export const MiniJuegos = () => {
 
     return (
         <>
+        <Navbar />
             <div className="mini-juegos" style={sectionStyle1}>
                 <div className="container text-overlay" style={{ background: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '10px' }}>
                     <div className="row justify-content-center align-items-center">
