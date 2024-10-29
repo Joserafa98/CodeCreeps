@@ -57,13 +57,18 @@ class Mensaje(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     contenido = db.Column(db.Text, nullable=False)
+    imagen_url = db.Column(db.String(255), nullable=True)  # Asegúrate de agregar este campo
     fecha_creacion = db.Column(db.DateTime, default=db.func.now())
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+
+    usuario = db.relationship('User', backref='mensajes')  # Relación con el modelo User
 
     def serialize(self):
         return {
             "id": self.id,
             "contenido": self.contenido,
+            "imagen_url": self.imagen_url,  # Incluir la URL de la imagen
             "fecha_creacion": self.fecha_creacion,
-            "usuario_id": self.usuario_id
+            "usuario_id": self.usuario_id,
+            "usuario_email": self.usuario.email  # Incluir el correo electrónico
         }

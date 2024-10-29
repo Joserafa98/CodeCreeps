@@ -64,7 +64,7 @@ export const Home = () => {
                                             ¡Prepárate para aprender y jugar en esta noche de brujas llena de sorpresas <strong>espeluznantes!</strong>
                                         </p>
                                         <div className="home__buttons">
-                                            <Link to="/Treats"className="button button--ghost" id="button-font">CODEA AHORA</Link>
+                                            <Link to="/signup"className="button button--ghost" id="button-font">CODEA AHORA</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@ export const Home = () => {
                                 Atrévete a ingresar al siniestro laboratorio del conocimiento en CodeCreeps, donde cada recurso es una delicia tenebrosa que enriquecerá tu viaje de aprendizaje. 
                             </p>
                             <div className="home__buttons">
-                                <Link to="/Treats" className="button button--ghost" id="button-font">APRENDE AHORA</Link>
+                                <Link to="/signup" className="button button--ghost" id="button-font">APRENDE AHORA</Link>
                             </div>
                         </div>
                         <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />

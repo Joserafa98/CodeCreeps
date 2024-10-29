@@ -48,10 +48,18 @@ const Navbar = () => {
                             </li>
                             <li className="nav__item">
                                 <Link 
-                                    to="/miniJuegos" 
-                                    className={`nav__link ${location.pathname === '/miniJuegos' ? 'active-link' : ''}`}
+                                    to="/minijuegos" 
+                                    className={`nav__link ${location.pathname === '/minijuegos' ? 'active-link' : ''}`}
                                 >
                                     Mini Juegos
+                                </Link>
+                            </li>
+                            <li className="nav__item">
+                                <Link 
+                                    to="/chatgeneral" 
+                                    className={`nav__link ${location.pathname === '/chatgeneral' ? 'active-link' : ''}`}
+                                >
+                                    Chat oscuro
                                 </Link>
                             </li>
                         </>

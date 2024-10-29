@@ -7,7 +7,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import App from '../component/CourseCard';
 import '../../styles/retos.css';
 import '../../styles/coursecard.css';
-import ChallengeList from '../component/ChallengesList'; // Asegúrate de que la ruta sea correcta
+import ChallengeList from './ChallengesList'; // Asegúrate de que la ruta sea correcta
 import Navbar from '../component/navbar';
 
 gsap.registerPlugin(ScrollTrigger);

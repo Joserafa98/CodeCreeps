@@ -11,11 +11,12 @@ import Retos from "./pages/retos"; // Importación corregida
 import { AboutUs } from "./pages/aboutUs";
 import HalloweenCodingChallenge from "./component/CourseCard";
 import { Treats } from "./pages/recursos";
+import ChatGeneral from "./pages/ChatGeneral";
+
 import { MiniJuegos } from "./pages/miniJuegos";
 import  MemorySpooky from "./pages/memorySpooky";
 import LightsOut from "./pages/lightsOut";
 import SnakeGame from "./pages/snakeGame";
-import CompleteProfile from "./pages/CompleteProfile";
 //create your first component
 const Layout = () => {
     const basename = process.env.BASENAME || "";
@@ -40,7 +41,7 @@ const Layout = () => {
                         <Route element={<LightsOut />} path="/lights-Out" />
                         <Route element={<SnakeGame />} path="/snake-de-halloween" />
                         <Route element={<Profile />} path="/profile" />
-                        <Route element={<CompleteProfile />} path="/signup/complete-profile" />
+                        <Route element={<ChatGeneral />} path="/chatgeneral" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

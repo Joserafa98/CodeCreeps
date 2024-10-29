@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Importa el Link
-import '../../styles/challengelist.css';
+import { Link } from 'react-router-dom';
 
 const desafiosEstaticos = [
     // Desafíos de JavaScript (más fácil a más difícil)
@@ -14,14 +13,13 @@ const desafiosEstaticos = [
             // Tu tarea: Suma los dos números
         }`, 
         tests: [
-            { input: [5, 3], output: 8 }, // Ahora suma 5 y 3
-            { input: [10, 20], output: 30 }, // Suma 10 y 20
-            { input: [-2, 2], output: 0 }, // Suma -2 y 2
-            { input: [0, 0], output: 0 }, // Suma de ceros
+            { input: [5, 3], output: 8 },
+            { input: [10, 20], output: 30 },
+            { input: [-2, 2], output: 0 },
+            { input: [0, 0], output: 0 },
         ],
         isblocked: false 
     },
-    
     { 
         id: 2, 
         nombre_reto: "Detectar Espectros", 
@@ -178,24 +176,63 @@ const shuffleArray = (array) => {
     return array;
 };
 
-const ChallengesList = () => {
+export default function ChallengesList() {
     const [desafiosList, setDesafiosList] = useState([]);
+    const [filteredDesafios, setFilteredDesafios] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedDificultad, setSelectedDificultad] = useState('Todos');
+    const [selectedLenguaje, setSelectedLenguaje] = useState('Todos');
 
-    const setupDesafios = async () => {
+    useEffect(() => {
+        const setupDesafios = async () => {
+            try {
+                const response = await fetch(`${process.env.BACKEND_URL}/api/retos`);
+                const data = await response.json();
+
+                // Limpiar los retos existentes
+                await fetch(`${process.env.BACKEND_URL}/api/retos/clear`, { method: 'DELETE' });
+
+                // Agregar los desafíos estáticos
+                await Promise.all(desafiosEstaticos.map(desafio =>
+                    fetch(`${process.env.BACKEND_URL}/api/retos`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(desafio),
+                    })
+                ));
+
+                const updatedResponse = await fetch(`${process.env.BACKEND_URL}/api/retos`);
+                const updatedData = await updatedResponse.json();
+
+                const shuffledDesafios = shuffleArray(updatedData);
+                setDesafiosList(shuffledDesafios);
+                setFilteredDesafios(shuffledDesafios);
+            } catch (error) {
+                setError('Error al cargar los desafíos.');
+                console.error('Error fetching desafios:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        setupDesafios();
+    }, []);
+
+    const reiniciarDesafios = async () => {
+        setLoading(true);
         try {
             const response = await fetch(`${process.env.BACKEND_URL}/api/retos`);
             const data = await response.json();
 
+            // Limpiar los retos existentes
             await fetch(`${process.env.BACKEND_URL}/api/retos/clear`, { method: 'DELETE' });
 
-            await Promise.all(desafiosEstaticos.map(desafio => 
+            // Agregar los desafíos estáticos
+            await Promise.all(desafiosEstaticos.map(desafio =>
                 fetch(`${process.env.BACKEND_URL}/api/retos`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(desafio),
                 })
             ));
@@ -205,43 +242,78 @@ const ChallengesList = () => {
 
             const shuffledDesafios = shuffleArray(updatedData);
             setDesafiosList(shuffledDesafios);
+            setFilteredDesafios(shuffledDesafios);
+            setError(null);
         } catch (error) {
-            setError('Error al cargar los desafíos.');
-            console.error('Error fetching desafios:', error);
+            setError('Error al reiniciar los desafíos.');
+            console.error('Error reiniciando desafios:', error);
         } finally {
             setLoading(false);
         }
     };
 
-    useEffect(() => {
-        setupDesafios();
-    }, []);
+    const handleFilter = () => {
+        let filtered = desafiosList;
 
-    const reiniciarDesafios = async () => {
-        try {
-            await setupDesafios();
-        } catch (error) {
-            setError('Error al reiniciar los desafíos.');
-            console.error('Error reiniciando desafios:', error);
+        if (selectedDificultad !== 'Todos') {
+            filtered = filtered.filter(desafio => desafio.dificultad === selectedDificultad);
         }
+
+        if (selectedLenguaje !== 'Todos') {
+            filtered = filtered.filter(desafio => desafio.lenguaje === selectedLenguaje);
+        }
+
+        setFilteredDesafios(filtered);
     };
 
-    if (loading) return <div className="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
-    if (error) return <p style={{ color: 'red' }}>{error}</p>;
+    useEffect(() => {
+        handleFilter();
+    }, [selectedDificultad, selectedLenguaje, desafiosList]);
+
+    if (loading) return <div className="spinner"><div></div></div>;
+    if (error) return <p style={{ color: '#FF0000', textAlign: 'center', fontSize: '1.2rem', marginTop: '20px' }}>{error}</p>;
 
     return (
         <div style={styles.container}>
             <h2 style={styles.title}>🎃 Lista de Desafíos de Halloween 🎃</h2>
             <button onClick={reiniciarDesafios} style={styles.button}>Reiniciar Desafíos</button>
+
+            <div style={styles.filters}>
+                <label htmlFor="dificultad" style={styles.label}>Dificultad:</label>
+                <select 
+                    id="dificultad" 
+                    value={selectedDificultad} 
+                    onChange={(e) => setSelectedDificultad(e.target.value)} 
+                    style={styles.select}
+                >
+                    <option value="Todos">Todos los niveles</option>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Difícil">Difícil</option>
+                </select>
+
+                <label htmlFor="lenguaje" style={styles.label}>Lenguaje:</label>
+                <select 
+                    id="lenguaje" 
+                    value={selectedLenguaje} 
+                    onChange={(e) => setSelectedLenguaje(e.target.value)} 
+                    style={styles.select}
+                >
+                    <option value="Todos">Todos los lenguajes</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Python">Python</option>
+                </select>
+            </div>
+
             <div style={styles.cardContainer}>
-                {desafiosList.map((desafio) => (
-                    <Link key={desafio.id} to={`/challenges/${desafio.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                {filteredDesafios.map((desafio) => (
+                    <Link key={desafio.id} to={`/challenges/${desafio.id}`} style={styles.cardLink}>
                         <div style={styles.card}>
                             <h3 style={styles.cardTitle}>{desafio.nombre_reto}</h3>
                             <p style={styles.cardDescription}>{desafio.descripcion}</p>
                             <div style={styles.tags}>
-                                <span style={styles.tag}>{desafio.dificultad}</span>
-                                <span style={styles.tag}>{desafio.lenguaje}</span>
+                                <span style={{...styles.tag, ...styles.tagDificultad(desafio.dificultad)}}>{desafio.dificultad}</span>
+                                <span style={{...styles.tag, ...styles.tagLenguaje(desafio.lenguaje)}}>{desafio.lenguaje}</span>
                             </div>
                         </div>
                     </Link>
@@ -249,76 +321,117 @@ const ChallengesList = () => {
             </div>
         </div>
     );
-};
+}
 
-// Estilos CSS en línea
 const styles = {
     container: {
         fontFamily: "'Creepster', cursive",
         color: '#FF6600',
-        backgroundColor: '#222',
+        backgroundColor: '#1A1A1A',
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'%3E%3Cg fill=\'%23222222\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M0  0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z\'/%3E%3C/g%3E%3C/svg%3E")',
         padding: '20px',
         textAlign: 'center',
         minHeight: '100vh',
+        boxSizing: 'border-box',
     },
     title: {
-        fontSize: '2.5rem',
-        color: '#FF6600',
-        marginBottom: '20px',
+        fontSize: '3rem',
+        marginBottom: '30px',
+        textShadow: '3px 3px #000, 0 0 10px #FF6600, 0 0 20px #FF6600',
+        letterSpacing: '2px',
     },
     button: {
         backgroundColor: '#FF6600',
-        color: '#222',
+        color: '#1A1A1A',
         border: 'none',
         borderRadius: '5px',
-        padding: '10px 20px',
-        fontSize: '1rem',
+        padding: '12px 25px',
+        fontSize: '1.1rem',
         cursor: 'pointer',
-        marginBottom: '20px',
-        transition: 'background-color 0.3s ease',
+        marginBottom: '30px',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 4px 10px rgba(255, 102, 0, 0.3)',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: '1px',
+    },
+    filters: {
+        marginBottom: '30px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '20px',
+        flexWrap: 'wrap',
+    },
+    label: {
+        fontSize: '1.1rem',
+        marginRight: '10px',
+        textShadow: '1px 1px #000',
+    },
+    select: {
+        padding: '8px 12px',
+        borderRadius: '4px',
+        border: '2px solid #FF6600',
+        backgroundColor: '#333',
+        color: '#FF6600',
+        cursor: 'pointer',
+        fontSize: '1rem',
+        transition: 'all 0.3s ease',
     },
     cardContainer: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        gap: '20px',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+        gap: '30px',
         padding: '0 20px',
     },
+    cardLink: {
+        textDecoration: 'none',
+        color: 'inherit',
+    },
     card: {
-        backgroundColor: '#333',
+        backgroundColor: 'rgba(68, 68, 68, 0.8)',
         color: '#FF6600',
-        padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 10px 15px rgba(0, 0, 0, 0.3)',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        padding: '25px',
+        borderRadius: '12px',
+        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 102, 0, 0.1) inset',
+        transition: 'all 0.3s ease',
         cursor: 'pointer',
         position: 'relative',
         overflow: 'hidden',
-        textDecoration: 'none',
+        border: '2px solid transparent',
     },
     cardTitle: {
-        fontSize: '1.5rem',
-        marginBottom: '10px',
+        fontSize: '1.8rem',
+        marginBottom: '15px',
+        textShadow: '2px 2px #000',
         position: 'relative',
-        zIndex: 2,
     },
     cardDescription: {
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         color: '#FFCC00',
-        position: 'relative',
-        zIndex: 2,
+        marginBottom: '20px',
+        lineHeight: '1.4',
     },
     tags: {
-        marginTop: '10px',
+        marginTop: '15px',
         display: 'flex',
         justifyContent: 'space-between',
     },
     tag: {
-        backgroundColor: '#444',
-        color: '#FF6600',
-        borderRadius: '4px',
-        padding: '5px 10px',
-        fontSize: '0.8rem',
+        borderRadius: '20px',
+        padding: '6px 12px',
+        fontSize: '0.9rem',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: '1px',
+        transition: 'all 0.3s ease',
     },
+    tagDificultad: (dificultad) => ({
+        backgroundColor: dificultad === 'Fácil' ? '#4CAF50' : dificultad === 'Intermedio' ? '#FFC107' : '#F44336',
+        color: dificultad === 'Intermedio' ? '#000' : '#FFF',
+    }),
+    tagLenguaje: (lenguaje) => ({
+        backgroundColor: lenguaje === 'JavaScript' ? '#F0DB4F' : '#3572A5',
+        color: lenguaje === 'JavaScript' ? '#000' : '#FFF',
+    }),
 };
-
-export default ChallengesList;

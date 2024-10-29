@@ -131,18 +131,18 @@ const SnakeGame = () => {
                 color: 'white',
             }}
         >
-            <h1>Juego de Snake</h1>
+            <h1 className="game-title">Juego de Snake</h1>
             <div className="game-area">
-                <div className="grid">
+                <div className="game-grid">
                     {Array.from({ length: gridSize }, (_, rowIndex) => (
-                        <div key={rowIndex} className="row">
+                        <div key={rowIndex} className="game-row">
                             {Array.from({ length: gridSize }, (_, colIndex) => {
                                 const isSnakePart = snake.some(segment => segment[0] === rowIndex && segment[1] === colIndex);
                                 const isFood = food[0] === rowIndex && food[1] === colIndex;
                                 return (
                                     <div
                                         key={colIndex}
-                                        className={`cell ${isSnakePart ? 'snake' : ''} ${isFood ? 'food' : ''}`}
+                                        className={`cell unique-cell ${isSnakePart ? 'unique-snake' : ''} ${isFood ? 'unique-food' : ''}`}
                                     />
                                 );
                             })}
