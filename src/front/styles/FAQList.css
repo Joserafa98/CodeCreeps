@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+.list-group-item {
+    background-color: transparent; /* Fondo transparente */
+    border: 2px solid #e66c01; /* Borde naranja */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+}
+
+.list-group-item:hover {
+    background-color: rgba(255, 140, 0, 0.2); /* Fondo naranja claro */
+    border-color: #FF8C00; 
+    transform: scale(1.05);
+}
+
+/* Estilo para el título de la pregunta */
+#Question {
+    color: #e66c01; /* Color del título en naranja */
+    font-size: 1.25rem; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita para el título */
+    margin-bottom: 10px; /* Margen inferior */
+    font-family: 'Creepster', cursive;
+}
+
+#Answer {
+    color: white; /* Color del subtítulo en blanco */
+    font-size: 1rem; /* Tamaño de fuente */
+}
+
+#home-title {
+    font-family: 'Creepster', cursive;
+}

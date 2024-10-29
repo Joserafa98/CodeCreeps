@@ -84,6 +84,28 @@ def get_user_by_id(user_id):
     
     return jsonify(user.serialize()), 200  
 
+@api.route('/api/user/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    # Busca el usuario en la base de datos
+    user = User.query.get(user_id)
+    
+    if not user:
+        return jsonify({"error": "Usuario no encontrado"}), 404
+
+    # Obtener los datos de la solicitud
+    data = request.get_json()
+
+    # Actualiza las propiedades del usuario
+    if 'difficulties' in data:
+        user.difficulties = data['difficulties']  # Se espera que sea un string
+    if 'preferred_languages' in data:
+        user.preferred_languages = data['preferred_languages']  # Se espera que sea un string
+
+    # Guarda los cambios en la base de datos
+    db.session.commit()
+
+    # Devuelve la representación serializada del usuario actualizado
+    return jsonify(user.serialize()), 200
 
 # Ruta para recuperar todos los retos o un reto específico por ID
 @api.route('/retos', methods=['GET'])
