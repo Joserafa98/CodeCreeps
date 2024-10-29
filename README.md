@@ -1,81 +1,87 @@
-# WebApp boilerplate with React JS and Flask API
+# 🎃 CODECREEPS 👻 #
 
-Build web applications using React.js for the front end and python/flask for your backend API.
+¡Bienvenidos a CODECREEPS! Sumérgete en una experiencia aterradora diseñada por Los FullStackers: Joserafa98, cristiann05 y Ruubia. Aquí, cada línea de código y cada reto son una oportunidad para enfrentar tus miedos de programación. En este proyecto, hemos creado una plataforma didáctica con un toque de Halloween para que desarrolladores juniors se adentren en el oscuro y misterioso mundo del código.
 
-- Documentation can be found here: https://start.4geeksacademy.com/starters/react-flask
-- Here is a video on [how to use this template](https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b)
-- Integrated with Pipenv for package managing.
-- Fast deployment to heroku [in just a few steps here](https://start.4geeksacademy.com/backend/deploy-heroku-posgres).
-- Use of .env file.
-- SQLAlchemy integration for database abstraction.
+## 📜 Descripción del Proyecto ##
 
-### 1) Installation:
+CODECREEPS es una plataforma educativa de Halloween hecha para desarrolladores principiantes que desean fortalecer sus habilidades en JavaScript y Python mientras se sumergen en un ambiente escalofriante. A través de retos, minijuegos espeluznantes y una comunidad activa, CODECREEPS convierte el aprendizaje en una experiencia que pondrá a prueba tanto tus conocimientos como tu valentía. ¿Tienes lo necesario para unirte y sobrevivir al mundo de CODECREEPS?
 
-> If you use Github Codespaces (recommended) or Gitpod this template will already come with Python, Node and the Posgres Database installed. If you are working locally make sure to install Python 3.10, Node 
+## 👻 Características Macabras ##
+Retos de Programación Terroríficos: Enfrenta desafíos en JavaScript y Python, desde los enigmas más básicos hasta los acertijos más complejos y temibles.
+Minijuegos Espeluznantes: Sumérgete en juegos de Halloween que no solo pondrán a prueba tus habilidades, sino también tu capacidad para mantener la calma.
+Sección de Recursos Embrujados: Explora una cueva llena de conocimientos, con videos, documentación y sitios web seleccionados para ayudarte en tu travesía de aprendizaje.
+Chat Comunitario: Únete al chat de CODECREEPS donde otros desarrolladores como tú pueden compartir consejos y ánimos. Además, ¡podrás enviar fotos para hacer la experiencia aún más aterradora con la API de Cloudinary!
+Interfaz de Miedo: Navega en un diseño inspirado en Halloween, que hará que cada reto se sienta como un capítulo de tu propia historia de horror.
 
-It is recomended to install the backend first, make sure you have Python 3.8, Pipenv and a database engine (Posgress recomended)
+## 🛠️ Tecnologías Utilizadas ##
+La pila tecnológica de CODECREEPS se construyó cuidadosamente para ofrecer una experiencia envolvente y espeluznante:
 
-1. Install the python packages: `$ pipenv install`
-2. Create a .env file based on the .env.example: `$ cp .env.example .env`
-3. Install your database engine and create your database, depending on your database you have to create a DATABASE_URL variable with one of the possible values, make sure you replace the valudes with your database information:
+Backend: Python, Flask
+Frontend: JavaScript, React, HTML, CSS, Bootstrap
+Almacenamiento de Medios: API de Cloudinary para enviar fotos en el chat
+Control de Versiones: Git
+Entorno de Desarrollo: VSCode, Pipenv para gestión de dependencias (opcional)
 
-| Engine    | DATABASE_URL                                        |
-| --------- | --------------------------------------------------- |
-| SQLite    | sqlite:////test.db                                  |
-| MySQL     | mysql://username:password@localhost:port/example    |
-| Postgress | postgres://username:password@localhost:5432/example |
+## ⚙️ Instalación y Configuración ##
+Clona el Repositorio del Terror
 
-4. Migrate the migrations: `$ pipenv run migrate` (skip if you have not made changes to the models on the `./src/api/models.py`)
-5. Run the migrations: `$ pipenv run upgrade`
-6. Run the application: `$ pipenv run start`
+git clone https://github.com/tu_usuario/codecCreeps.git
+cd codecCreeps
 
-> Note: Codespaces users can connect to psql by typing: `psql -h localhost -U gitpod example`
+Configura el Entorno Virtual (si te atreves)
 
-### Undo a migration
+pipenv install
+npm install
 
-You are also able to undo a migration by running
+Ejecuta el Proyecto (si estás listo para la experiencia)
 
-```sh
-$ pipenv run downgrade
-```
+Backend:
+pipenv run start
 
-### Backend Populate Table Users
+Frontend:
+npm run start
 
-To insert test users in the database execute the following command:
+## 🚀 Instrucciones para Sobrevivir en CODECREEPS ##
+Regístrate y únete a la liga de CODECREEPS.
+Desafía tu mente con retos de programación espeluznantes en JavaScript y Python.
+Juega y sobrevive en minijuegos diseñados para Halloween.
+Explora la cueva de recursos con conocimientos esenciales para superar cada prueba.
+Conéctate con otros sobrevivientes en el chat para compartir tus logros o pedir ayuda cuando sientas que el código se ha vuelto contra ti.
 
-```sh
-$ flask insert-test-users 5
-```
+## 📂 Estructura del Proyecto ##
+bash
+Copiar código
+codecCreeps/
+├── src/
+│   ├── api/
+│   │   ├── api.py            # Configuración de la API de Flask
+│   │   ├── models.py         # Modelos de base de datos
+│   │   ├── routes.py         # Rutas de la API
+│   │   ├── utils.py          # Utilidades de apoyo
+│   │   ├── command.py        # Comandos personalizados
+│   │   ├── admin.py          # Panel de administración
+│   │   └── __init__.py       # Inicialización del módulo
+│   ├── front/
+│   │   ├── img/              # Recursos de imágenes para el frontend
+│   │   ├── js/
+│   │   │   ├── components/   # Componentes de React
+│   │   │   ├── pages/        # Páginas principales del frontend
+│   │   │   ├── store/        # Almacenamiento de estado global
+│   │   │   ├── index.js      # Punto de entrada de React
+│   │   │   └── layout.js     # Configuración de layout y rutas
+│   │   └── styles/           # Archivos de estilos CSS
+│   ├── app.py                # Archivo principal del backend
+│   └── wsgi.py               # Configuración WSGI para despliegue
+└── README.md                 # Documentación del proyecto
 
-And you will see the following message:
+## 🤝 Contribuciones de Ultratumba ##
+Este proyecto está encantado de recibir contribuciones de otros valientes. Para unirte a Los FullStackers y añadir tus propias características espeluznantes, sigue estos pasos:
 
-```
-  Creating test users
-  test_user1@test.com created.
-  test_user2@test.com created.
-  test_user3@test.com created.
-  test_user4@test.com created.
-  test_user5@test.com created.
-  Users created successfully!
-```
+Realiza un fork del proyecto.
+Crea una rama para tu funcionalidad (git checkout -b feature/nueva-funcionalidad).
+Haz commit de tus cambios (git commit -am 'Agrega una nueva funcionalidad espeluznante').
+Haz push a la rama (git push origin feature/nueva-funcionalidad).
+Abre un Pull Request, si te atreves…
 
-### **Important note for the database and the data inside it**
-
-Every Github codespace environment will have **its own database**, so if you're working with more people eveyone will have a different database and different records inside it. This data **will be lost**, so don't spend too much time manually creating records for testing, instead, you can automate adding records to your database by editing ```commands.py``` file inside ```/src/api``` folder. Edit line 32 function ```insert_test_data``` to insert the data according to your model (use the function ```insert_test_users``` above as an example). Then, all you need to do is run ```pipenv run insert-test-data```.
-
-### Front-End Manual Installation:
-
--   Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
-
-1. Install the packages: `$ npm install`
-2. Start coding! start the webpack dev server `$ npm run start`
-
-## Publish your website!
-
-This boilerplate it's 100% read to deploy with Render.com and Heroku in a matter of minutes. Please read the [official documentation about it](https://start.4geeksacademy.com/deploy).
-
-### Contributors
-
-This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-
-You can find other templates and resources like this at the [school github page](https://github.com/4geeksacademy/).
+## 🎃 Créditos ##
+Este proyecto fue creado con mucho esfuerzo (y algo de magia negra) por Los FullStackers: Joserafa98, cristiann05 y Ruubia. Agradecemos a todos los desarrolladores valientes y a la API de Cloudinary por hacer posible esta experiencia en CODECREEPS.
