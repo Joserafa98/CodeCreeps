@@ -19,7 +19,7 @@ html {
     cursor: url("https://raw.githubusercontent.com/WebDevSimplified/Mix-Or-Match/master/Assets/Cursors/Ghost.cur"), auto;
 }
 
-body {
+body.memoryspooky {
     margin: 0;
     background: radial-gradient(#9D5900, #3D2200);
 }
@@ -217,6 +217,7 @@ body {
         align-items: center;
     }
 }
+
 /* Background Styles Only */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 

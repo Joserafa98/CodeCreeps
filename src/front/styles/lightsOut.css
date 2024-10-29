@@ -1,5 +1,3 @@
-/* lightsOut.css */
-
 .lights-out-container {
     position: relative;
     min-height: 100vh;
@@ -25,18 +23,15 @@
     background-color: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Uso de .lights-out-container .grid para evitar conflictos */
-.lights-out-container .grid {
+/* Cambiar .grid a .lights-out-grid */
+.lights-out-container .lights-out-grid {
     display: grid;
     grid-template-columns: repeat(8, 1fr); /* 8 columnas */
     gap: 10px; /* Espacio entre elementos */
     justify-content: center; /* Alineación central */
-    width: 100%; /* Asegurarse de que la cuadrícula ocupe el 100% */
+    width: 100%; /* Asegúrate de que la cuadrícula ocupe el 100% */
     max-width: 640px; /* Limitar el ancho máximo de la cuadrícula */
 }
 
@@ -58,6 +53,12 @@
     background-color: grey;
 }
 
+.lights-out-container .game-over {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.lights-out-container .btn-restart,
 .lights-out-container .btn-halloween {
     background-color: #ff5722;
     color: white;

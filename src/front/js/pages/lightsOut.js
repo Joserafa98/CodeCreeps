@@ -13,7 +13,17 @@ const LightsOut = () => {
     // Ejemplo de configuración de juegos
     const gamesList = {
         0: [7, 11, 12, 13, 17],
-        // Agrega más juegos según sea necesario
+        1: [0, 1, 2, 8, 9],
+        2: [3, 4, 5, 10, 11],
+        3: [12, 13, 14, 20, 21],
+        4: [16, 17, 18, 24, 25],
+        5: [19, 20, 21, 27, 28],
+        6: [22, 23, 30, 31, 32],
+        7: [4, 5, 6, 12, 13],
+        8: [2, 6, 10, 14, 18],
+        9: [24, 25, 26, 30, 31],
+        10: [1, 2, 3, 4, 5, 6, 7, 8, 9], // Todo encendido
+        11: [0, 3, 5, 9, 14, 21, 27] // Una configuración personalizada
     };
 
     useEffect(() => {
@@ -25,7 +35,7 @@ const LightsOut = () => {
         const toggle = (i) => {
             if (i >= 0 && i < size * size) newSquares[i] = !newSquares[i];
         };
-        
+
         toggle(index);
         if (index % size !== 0) toggle(index - 1); // izquierda
         if (index % size !== size - 1) toggle(index + 1); // derecha
@@ -42,13 +52,12 @@ const LightsOut = () => {
         <div 
             className="lights-out-container" 
             style={{
-                backgroundImage: `url(${calabazas})`,
-                // no necesitas esto ya que está en el CSS
+                backgroundImage: `url(${calabazas})`
             }}
         >
-            <h1 className="lights-out-title">Lights Out</h1>
+            <h1 className="lights-out-title">Lights Out Game</h1>
             <div className="game-area">
-                <div className="grid">
+                <div className="lights-out-grid">
                     {squares.map((isOn, index) => (
                         <div
                             key={index}

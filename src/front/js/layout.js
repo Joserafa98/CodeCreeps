@@ -35,14 +35,11 @@ const Layout = () => {
                         <Route element={<AboutUs />} path="/aboutUs" />
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Treats />} path="/Treats" />
-<<<<<<< HEAD
                         <Route element={<MiniJuegos />} path="/miniJuegos" />
                         <Route element={<MemorySpooky />} path="/memory-Spooky" />
                         <Route element={<LightsOut />} path="/lights-Out" />
                         <Route element={<SnakeGame />} path="/snake-de-halloween" />
-=======
                         <Route element={<Profile />} path="/profile" />
->>>>>>> main
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
