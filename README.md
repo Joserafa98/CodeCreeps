@@ -49,30 +49,30 @@ Explora la cueva de recursos con conocimientos esenciales para superar cada prue
 Conéctate con otros sobrevivientes en el chat para compartir tus logros o pedir ayuda cuando sientas que el código se ha vuelto contra ti.
 
 ## 📂 Estructura del Proyecto ##
-bash
-Copiar código
+
 codecCreeps/
 ├── src/
 │   ├── api/
-│   │   ├── api.py            # Configuración de la API de Flask
-│   │   ├── models.py         # Modelos de base de datos
-│   │   ├── routes.py         # Rutas de la API
-│   │   ├── utils.py          # Utilidades de apoyo
-│   │   ├── command.py        # Comandos personalizados
-│   │   ├── admin.py          # Panel de administración
-│   │   └── __init__.py       # Inicialización del módulo
+│   │   ├── api.py           
+│   │   ├── models.py         
+│   │   ├── routes.py         
+│   │   ├── utils.py          
+│   │   ├── command.py        
+│   │   ├── admin.py          
+│   │   └── __init__.py       
 │   ├── front/
-│   │   ├── img/              # Recursos de imágenes para el frontend
+│   │   ├── img/              
 │   │   ├── js/
-│   │   │   ├── components/   # Componentes de React
-│   │   │   ├── pages/        # Páginas principales del frontend
-│   │   │   ├── store/        # Almacenamiento de estado global
-│   │   │   ├── index.js      # Punto de entrada de React
-│   │   │   └── layout.js     # Configuración de layout y rutas
-│   │   └── styles/           # Archivos de estilos CSS
-│   ├── app.py                # Archivo principal del backend
-│   └── wsgi.py               # Configuración WSGI para despliegue
-└── README.md                 # Documentación del proyecto
+│   │   │   ├── components/   
+│   │   │   ├── pages/        
+│   │   │   ├── store/        
+│   │   │   ├── index.js      
+│   │   │   └── layout.js     
+│   │   └── styles/           
+│   ├── app.py                
+│   └── wsgi.py               
+└── README.md                
+
 
 ## 🤝 Contribuciones de Ultratumba ##
 Este proyecto está encantado de recibir contribuciones de otros valientes. Para unirte a Los FullStackers y añadir tus propias características espeluznantes, sigue estos pasos:
