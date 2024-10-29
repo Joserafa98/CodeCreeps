@@ -23,17 +23,17 @@ Control de Versiones: Git
 Entorno de Desarrollo: VSCode, Pipenv para gestión de dependencias (opcional)
 
 ## ⚙️ Instalación y Configuración ##
-Clona el Repositorio del Terror
+### Clona el Repositorio del Terror ###
 
-git clone https://github.com/tu_usuario/codecCreeps.git
+git clone https://github.com/cristiann05/CodeCreeps
 cd codecCreeps
 
-Configura el Entorno Virtual (si te atreves)
+### Configura el Entorno Virtual (si te atreves) ###
 
 pipenv install
 npm install
 
-Ejecuta el Proyecto (si estás listo para la experiencia)
+### Ejecuta el Proyecto (si estás listo para la experiencia) ###
 
 Backend:
 pipenv run start
