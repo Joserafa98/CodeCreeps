@@ -10,6 +10,7 @@ const Navbar = () => {
     const location = useLocation();
     const { currentUser } = store; // Obtén el usuario actual del store
 
+    // Función para manejar el cierre de sesión
     const handleLogout = async () => {
         await actions.logoutUser(); // Llama a la acción de logout
         navigate('/'); // Redirige a la página principal después del logout
@@ -46,7 +47,6 @@ const Navbar = () => {
                                     Tratos
                                 </Link>
                             </li>
-
                             <li className="nav__item">
                                 <Link 
                                     to="/chatgeneral" 
@@ -55,18 +55,25 @@ const Navbar = () => {
                                     Chat oscuro
                                 </Link>
                             </li>
+                            <li className="nav__item">
+                                <Link 
+                                    to="/miniJuegos" 
+                                    className={`nav__link ${location.pathname === '/miniJuegos' ? 'active-link' : ''}`}
+                                >
+                                    Mini Juegos
+                                </Link>
+                            </li>
                         </>
                     )}
-                    {currentUser ? (
+                    {currentUser ? ( // Si hay un usuario autenticado
                         <>
                             <Link to="/profile" className="nav__link">
                                 <img src={currentUser.profilePicture || ProfilePic} alt="Profile" className="profile-img" />
                             </Link>
                             <button onClick={handleLogout} className="button button--ghost" id='logout-button'>Cerrar sesión</button>
                         </>
-                    ) : (
+                    ) : ( // Si no hay usuario autenticado
                         <>
-                            <Link to="/miniJuegos" className="button button--ghost" id='user-button'>Mini Juegos</Link>
                             <Link to="/aboutUs" className="button button--ghost" id='user-button'>Sobre nosotros</Link>
                             <Link to="/signup" className="button button--ghost" id='user-button'>ÚNETE AHORA</Link>
                             <Link to="/login" className="button button--ghost" id='user-button'>INICIA SESIÓN</Link>
