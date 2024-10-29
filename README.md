@@ -28,7 +28,7 @@ Entorno de Desarrollo: VSCode, Pipenv para gestión de dependencias (opcional)
 git clone https://github.com/cristiann05/CodeCreeps
 cd codecCreeps
 
-### Configura el Entorno Virtual (si te atreves) ###
+### Configura el Entorno Virtual (si te atreves) 
 
 pipenv install
 npm install
