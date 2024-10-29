@@ -4,6 +4,7 @@ import "../../styles/home.css";
 import { Footer } from "../component/footer";
 import { Link } from "react-router-dom";
 import Navbar from "../component/navbar";
+import FAQList from "../component/FAQList";
 export const Home = () => {
     const { store, actions } = useContext(Context);
 
@@ -158,7 +159,7 @@ export const Home = () => {
                         <img src="https://assets.codepen.io/7773162/about-img.png" alt="" className="about__img" />
                     </div>
                 </section>
-
+                <FAQList />
                 <Footer />
             </main>
         </>

@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+.layout {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.complete-profile {
+  animation: popUp ease-in-out 350ms;
+  background: transparent;
+  border: 2px solid #e66c01;
+  border-radius: 25px;
+  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+  margin-top: 40px;
+  padding: 28px 30px 30px 35px;
+  position: relative;
+  width: 500px;
+  color: #e66c01;
+}
+
+.complete-profile__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.complete-profile__title {
+  font-family: 'Creepster', cursive;
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #e66c01;
+  text-align: center;
+}
+
+.complete-profile__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.option-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  border: 2px solid #e66c01;
+  color: #e66c01;
+  background-color: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: #e66c01;
+  color: #ffffff;
+  transform: scale(1.05); /* Aumento de tamaño en hover */
+}
+
+.option-button.selected {
+  background-color: #e66c01;
+  color: #ffffff;
+}
+
+.complete-profile__button {
+ background-color: transparent;
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  color: #e66c01;
+  border: 2px solid #e66c01;
+  border-radius: 50px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.complete-profile__button:hover {
+  background-color: #e66c01;
+  color: #ffffff;
+  transform: scale(1.05); /* Aumento de tamaño en hover */
+}
+
+#button-font, #button-answer, #button-languaje{
+    font-family: 'Creepster', cursive;
+    font-size: larger;
+  }
+
+@keyframes popUp {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

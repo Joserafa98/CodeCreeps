@@ -11,7 +11,7 @@ import Retos from "./pages/retos"; // Importación corregida
 import { AboutUs } from "./pages/aboutUs";
 import HalloweenCodingChallenge from "./component/CourseCard";
 import { Treats } from "./pages/recursos";
-
+import CompleteProfile from "./pages/CompleteProfile";
 //create your first component
 const Layout = () => {
     const basename = process.env.BASENAME || "";
@@ -32,6 +32,7 @@ const Layout = () => {
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Treats />} path="/Treats" />
                         <Route element={<Profile />} path="/profile" />
+                        <Route element={<CompleteProfile />} path="/signup/complete-profile" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

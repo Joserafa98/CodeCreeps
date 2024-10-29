@@ -141,20 +141,23 @@ const getState = ({ getStore, getActions, setStore }) => {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(updatedData), 
+                        body: JSON.stringify(updatedData),
                     });
             
                     if (!response.ok) {
-                        throw new Error("Failed to update user");
+                        const errorData = await response.json();  // Obtener datos del error
+                        throw new Error(errorData.error || "Failed to update user");
                     }
             
                     const data = await response.json();
                     console.log("User updated successfully:", data);
-                    return data;
+                    return data;  // Devuelve el usuario actualizado
                 } catch (error) {
                     console.error("Error updating user:", error);
+                    return null;  // Devolver null en caso de error
                 }
             },
+            
             
             // Función para crear una clasificación
             createClasificacion: async (userId, retoId) => {
