@@ -57,6 +57,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
+                            <Link to="/miniJuegos" className="button button--ghost" id='user-button'>Mini Juegos</Link>
                             <Link to="/aboutUs" className="button button--ghost" id='user-button'>Sobre nosotros</Link>
                             <Link to="/signup" className="button button--ghost" id='user-button'>ÚNETE AHORA</Link>
                             <Link to="/login" className="button button--ghost" id='user-button'>INICIA SESIÓN</Link>
