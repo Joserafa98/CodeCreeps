@@ -11,6 +11,7 @@ import Retos from "./pages/retos"; // Importación corregida
 import { AboutUs } from "./pages/aboutUs";
 import HalloweenCodingChallenge from "./component/CourseCard";
 import { Treats } from "./pages/recursos";
+import ChatGeneral from "./pages/ChatGeneral";
 
 //create your first component
 const Layout = () => {
@@ -32,6 +33,7 @@ const Layout = () => {
                         <Route element={<HalloweenCodingChallenge />} path="/challenges/:id" />
                         <Route element={<Treats />} path="/Treats" />
                         <Route element={<Profile />} path="/profile" />
+                        <Route element={<ChatGeneral />} path="/chatgeneral" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

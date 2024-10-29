@@ -167,13 +167,21 @@ def agregar_mensaje():
     """Permite a un usuario autenticado enviar un mensaje en el chat general"""
     usuario_id = get_jwt_identity()
     contenido = request.json.get("contenido")
-    if not contenido:
-        return jsonify({"msg": "El contenido del mensaje es requerido"}), 400
+    imagen_url = request.json.get("imagen")  # Obtener la URL de la imagen
 
-    nuevo_mensaje = Mensaje(contenido=contenido, usuario_id=usuario_id)
-    db.session.add(nuevo_mensaje)
-    db.session.commit()
-    return jsonify(nuevo_mensaje.serialize()), 201
+    # Validar que haya contenido o una imagen
+    if not contenido and not imagen_url:
+        return jsonify({"msg": "El contenido del mensaje o la imagen es requerido"}), 400
+
+    try:
+        nuevo_mensaje = Mensaje(contenido=contenido, imagen_url=imagen_url, usuario_id=usuario_id)
+        db.session.add(nuevo_mensaje)
+        db.session.commit()
+        return jsonify(nuevo_mensaje.serialize()), 201
+    except Exception as e:
+        db.session.rollback()  # Rollback en caso de error
+        return jsonify({"msg": "Error al agregar el mensaje"}), 500
+
 
 if __name__ == '__main__':
     api.run(debug=True)

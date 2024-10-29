@@ -46,6 +46,15 @@ const Navbar = () => {
                                     Tratos
                                 </Link>
                             </li>
+
+                            <li className="nav__item">
+                                <Link 
+                                    to="/chatgeneral" 
+                                    className={`nav__link ${location.pathname === '/chatgeneral' ? 'active-link' : ''}`}
+                                >
+                                    Chat oscuro
+                                </Link>
+                            </li>
                         </>
                     )}
                     {currentUser ? (

@@ -1,0 +1,144 @@
+/* chatgeneral.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #1b1b1b;
+    color: #f1f1f1;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: 2000px;
+    margin: auto;
+    padding: 2em;
+    border-radius: 12px;
+    background-color: #252525;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+    text-align: center;
+    color: #ff7518;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 8px rgba(255, 117, 24, 0.8);
+}
+
+.error {
+    color: #ff4d4d;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto; /* Permitir desplazamiento */
+    padding: 1em;
+    background-color: #333333;
+    border-radius: 12px;
+    border: 2px solid #ff7518;
+    box-shadow: inset 0 0 10px #ff7518;
+    max-height: calc(100vh - 200px); /* Ajustar altura */
+}
+
+.message {
+    background-color: rgba(255, 117, 24, 0.1);
+    margin: 0.5em 0;
+    padding: 1em;
+    border-radius: 8px;
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.message strong {
+    color: #ff7518;
+}
+
+.timestamp {
+    display: block;
+    font-size: 0.8em;
+    color: #aaaaaa;
+    margin-top: 5px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-input-container {
+    display: flex;
+    align-items: center; /* Centrar verticalmente el input y el botón */
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px 40px 10px 10px; /* Espacio a la derecha para el icono */
+    border: 1px solid #ccc; /* Borde del input */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para el input */
+    background-color: #333333; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    font-size: 1.2em; /* Tamaño de fuente */
+}
+
+input::placeholder {
+    color: #888888; /* Color del placeholder */
+    font-style: italic; /* Estilo del placeholder */
+}
+
+button {
+    background: #ff7518; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 10px 15px; /* Relleno del botón */
+    cursor: pointer; /* Cursor en forma de mano */
+    margin-left: 10px; /* Espacio entre botones */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+button:hover {
+    background: #d9641a; /* Color de fondo al pasar el mouse */
+}
+
+.message-image {
+    max-width: 150px; /* Cambia el tamaño máximo según tus necesidades */
+    max-height: 150px; /* Cambia el tamaño máximo según tus necesidades */
+    width: auto;
+    height: auto;
+    border-radius: 8px; /* Bordes redondeados para las imágenes */
+    margin-top: 5px; /* Espacio encima de la imagen */
+    margin-bottom: 5px; /* Espacio debajo de la imagen */
+}
+
+.image-preview-modal {
+    position: fixed; /* Modal fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.image-preview {
+    max-width: 90%; /* Ancho máximo del preview */
+    max-height: 90%; /* Altura máxima del preview */
+    border-radius: 10px; /* Opcional: bordes redondeados para la imagen */
+}
