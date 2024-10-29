@@ -46,6 +46,14 @@ const Navbar = () => {
                                     Tratos
                                 </Link>
                             </li>
+                            <li className="nav__item">
+                                <Link 
+                                    to="/miniJuegos" 
+                                    className={`nav__link ${location.pathname === '/miniJuegos' ? 'active-link' : ''}`}
+                                >
+                                    Mini Juegos
+                                </Link>
+                            </li>
                         </>
                     )}
                     {currentUser ? (
@@ -57,7 +65,6 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/miniJuegos" className="button button--ghost" id='user-button'>Mini Juegos</Link>
                             <Link to="/aboutUs" className="button button--ghost" id='user-button'>Sobre nosotros</Link>
                             <Link to="/signup" className="button button--ghost" id='user-button'>ÚNETE AHORA</Link>
                             <Link to="/login" className="button button--ghost" id='user-button'>INICIA SESIÓN</Link>
